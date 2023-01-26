@@ -5,16 +5,12 @@ block_cipher = None
 
 import sysconfig
 import os.path
-import pathlib
-
-SPEC_LOC = pathlib.Path(__file__).parent
-
 
 a = Analysis(
-    [os.path.join(SPEC_LOC, 'railos_consist', '__init__.py')],
+    [os.path.join('railos_consist', '__init__.py')],
     pathex=[sysconfig.get_paths()["purelib"]],
     binaries=[],
-    datas=[(os.path.join(SPEC_LOC, 'railos_consist', 'data'), 'railos_consist/data')],
+    datas=[(os.path.join('railos_consist', 'data'), os.path.join('railos_consist', 'data'))],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
