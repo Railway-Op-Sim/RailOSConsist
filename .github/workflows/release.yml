@@ -43,7 +43,7 @@ jobs:
       - name: Create Package
         run: |
           LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
-          DISPLAY="" pyinstaller --clean -y RailOSConsist.spec
+          DISPLAY="" poetry run pyinstaller --clean -y RailOSConsist.spec
           sudo apt install zip -y
           DIR_NAME=$(echo "${{ steps.outdir_name.outputs.stdout }}" | xargs)_$(echo "${{ steps.outver.outputs.stdout }}" | xargs)
           DIR_NAME=$(echo $DIR_NAME | xargs)
