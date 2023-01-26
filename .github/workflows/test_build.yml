@@ -1,0 +1,25 @@
+name: RailOS Consist
+on: [push]
+jobs:
+  testing:
+    runs-on: windows-latest
+    name: RailOS Consist Testing
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+      - uses: Gr1N/setup-poetry@v7
+
+      - name: Get Previous tag
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: Build application
+        run: |
+          LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
+          DISPLAY="" pyinstaller --clean -y RailOSConsist.spec
+        shell: bash

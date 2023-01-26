@@ -1,0 +1,64 @@
+name: RailOSConsist Release
+on:
+  push:
+    tags:
+      - "v*"
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Get Previous tag
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      - name: Set Output Directory
+        uses: mathiasvr/command-output@v1
+        id: outdir_name
+        with:
+          run: echo $GITHUB_REPOSITORY | cut -d '/' -f 2 | cut --complement -f1 -d '-' | xargs
+      - name: Set Version Suffix
+        uses: mathiasvr/command-output@v1
+        id: outver
+        with:
+          run: |
+            VERSION="${{ steps.previoustag.outputs.tag }}"
+            echo ${VERSION//./_} | xargs
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+      - uses: Gr1N/setup-poetry@v7
+      - name: Publish PDF Document
+        uses: shrink/actions-document-publish@v1
+        id: publish-document
+        with:
+          sources: 'README.md'
+      - uses: Gr1N/setup-poetry@v7
+      - name: Create Package
+        run: |
+          LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
+          DISPLAY="" pyinstaller --clean -y RailOSConsist.spec
+          sudo apt install zip -y
+          DIR_NAME=$(echo "${{ steps.outdir_name.outputs.stdout }}" | xargs)_$(echo "${{ steps.outver.outputs.stdout }}" | xargs)
+          DIR_NAME=$(echo $DIR_NAME | xargs)
+          mkdir -p $DIR_NAME
+          cp deploy/README.pdf $DIR_NAME/
+          cp RailOSConsist.exe $DIR_NAME/
+          ${{ steps.publish-document.outputs.pdf }} $DIR_NAME/README.pdf
+          zip -r $DIR_NAME.zip $DIR_NAME
+        shell: bash
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          name: ${{ github.repository }} Release ${{ steps.previoustag.outputs.tag }}
+          tag_name: ${{ steps.previoustag.outputs.tag }}
+          files: |
+            *.zip
