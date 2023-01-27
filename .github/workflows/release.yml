@@ -7,13 +7,27 @@ permissions:
   contents: write
 
 jobs:
+  create-pdf:
+    name: Create Readme
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Publish PDF Document
+        uses: shrink/actions-document-publish@v1
+        id: publish-document
+        with:
+          sources: 'README.md'
+      - name: Archive Modelica Binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: railosconsist-readme
+          path: "README.pdf"
+          retention-days: 1
   create-release:
     name: Create Release
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
@@ -40,12 +54,26 @@ jobs:
           LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
           DISPLAY="" poetry run pyinstaller --clean -y RailOSConsist.spec
           sudo apt install zip -y
+          mkdir -p release
+          cp dist/RailOSConsist.exe release/
+          cp README.pdf release/
+        shell: bash
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.0
+        with:
+          type: 'zip'
+          filename: 'release.zip'
+          path: 'release'
+      - name: Retrieve Open Modelica model binaries
+        uses: actions/download-artifact@v2
+        with:
+          name: railosconsist-readme
+          path: README.pdf
+      - name: Rename Release
+        run: |
           DIR_NAME=$(echo "${{ steps.outdir_name.outputs.stdout }}" | xargs)_$(echo "${{ steps.outver.outputs.stdout }}" | xargs)
           DIR_NAME=$(echo $DIR_NAME | xargs)
-          mkdir -p $DIR_NAME
-          cp dist/RailOSConsist.exe $DIR_NAME/
-          zip -r $DIR_NAME.zip $DIR_NAME
-        shell: bash
+          mv release.zip $DIR_NAME.zip
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
