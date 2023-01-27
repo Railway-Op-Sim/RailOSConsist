@@ -73,6 +73,7 @@ jobs:
           DIR_NAME=$(echo "${{ steps.outdir_name.outputs.stdout }}" | xargs)_$(echo "${{ steps.outver.outputs.stdout }}" | xargs)
           DIR_NAME=$(echo $DIR_NAME | xargs)
           mv release.zip $DIR_NAME.zip
+        shell: bash
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
