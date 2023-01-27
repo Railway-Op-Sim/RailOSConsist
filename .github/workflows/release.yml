@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: railosconsist-readme
-          path: "README.pdf"
+          path: "document.pdf"
           retention-days: 1
   create-release:
     name: Create Release
@@ -49,7 +49,11 @@ jobs:
           python-version: '3.11'
           architecture: 'x64'
       - uses: Gr1N/setup-poetry@v7
-      - uses: Gr1N/setup-poetry@v7
+      - name: Retrieve Open Modelica model binaries
+        uses: actions/download-artifact@v2
+        with:
+          name: railosconsist-readme
+          path: "document.pdf"
       - name: Create Package
         run: |
           LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
@@ -57,7 +61,7 @@ jobs:
           sudo apt install zip -y
           mkdir -p release
           cp dist/RailOSConsist.exe release/
-          cp README.pdf release/
+          cp document.pdf release/README.pdf
         shell: bash
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.0
@@ -65,11 +69,6 @@ jobs:
           type: 'zip'
           filename: 'release.zip'
           path: 'release'
-      - name: Retrieve Open Modelica model binaries
-        uses: actions/download-artifact@v2
-        with:
-          name: railosconsist-readme
-          path: README.pdf
       - name: Rename Release
         run: |
           DIR_NAME=$(echo "${{ steps.outdir_name.outputs.stdout }}" | xargs)_$(echo "${{ steps.outver.outputs.stdout }}" | xargs)
