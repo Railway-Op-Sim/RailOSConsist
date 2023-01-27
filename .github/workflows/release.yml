@@ -48,7 +48,6 @@ jobs:
           DIR_NAME=$(echo "${{ steps.outdir_name.outputs.stdout }}" | xargs)_$(echo "${{ steps.outver.outputs.stdout }}" | xargs)
           DIR_NAME=$(echo $DIR_NAME | xargs)
           mkdir -p $DIR_NAME
-          cp deploy/README.pdf $DIR_NAME/
           cp dist/RailOSConsist.exe $DIR_NAME/
           ${{ steps.publish-document.outputs.pdf }} $DIR_NAME/README.pdf
           zip -r $DIR_NAME.zip $DIR_NAME
