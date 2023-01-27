@@ -21,3 +21,6 @@ pyinstaller = "^5.7.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+railosconsist = 'railos_consist.railosconsist:launch_application'

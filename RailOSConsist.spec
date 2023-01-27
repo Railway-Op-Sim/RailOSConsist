@@ -7,7 +7,7 @@ import sysconfig
 import os.path
 
 a = Analysis(
-    [os.path.join('railos_consist', '__init__.py')],
+    [os.path.join('railos_consist', 'railosconsist.py')],
     pathex=[sysconfig.get_paths()["purelib"]],
     binaries=[],
     datas=[(os.path.join('railos_consist', 'data'), os.path.join('railos_consist', 'data'))],
