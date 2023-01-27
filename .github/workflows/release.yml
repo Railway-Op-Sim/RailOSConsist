@@ -17,7 +17,7 @@ jobs:
         id: publish-document
         with:
           sources: 'README.md'
-      - name: Archive Modelica Binaries
+      - name: Archive README
         uses: actions/upload-artifact@v2
         with:
           name: railosconsist-readme
@@ -58,7 +58,6 @@ jobs:
         run: |
           LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
           DISPLAY="" poetry run pyinstaller --clean -y RailOSConsist.spec
-          sudo apt install zip -y
           mkdir -p release
           cp dist/RailOSConsist.exe release/
           cp .publish-docs/document.pdf release/README.pdf

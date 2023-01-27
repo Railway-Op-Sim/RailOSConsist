@@ -1,5 +1,7 @@
 name: RailOSConsist
-on: [push]
+on:
+  push:
+    branches: ["main"]
 jobs:
   testing:
     runs-on: windows-latest
