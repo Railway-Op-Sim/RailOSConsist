@@ -15,7 +15,7 @@ _RailOSConsist_ is a small utility for quickly generating the first line of a se
 
 ## Creating Headers
 
-The applcation is easy to use, just select a country from the dropdown and then a consist. Fill in the additional information and the header string will automatically be created. Use the _Copy_ button to copy the string to your clipboard.
+The application is easy to use, just select a country from the dropdown and then a consist. Fill in the additional information and the header string will automatically be created. Use the _Copy_ button to copy the string to your clipboard.
 
 When updating the start speed by typing values as opposed to adjusting with the spinbox, hit the `Enter` key to update the header.
 
