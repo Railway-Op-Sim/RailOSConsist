@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: railosconsist-readme
-          path: .publish-docs/document.pdf
+          path: .publish-docs/
           retention-days: 1
   create-release:
     name: Create Release
@@ -33,7 +33,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: railosconsist-readme
-          path: .publish-docs/document.pdf
+          path: .publish-docs/
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
