@@ -1,4 +1,4 @@
-name: RailOS Consist
+name: RailOSConsist
 on: [push]
 jobs:
   testing:
