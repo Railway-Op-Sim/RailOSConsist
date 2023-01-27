@@ -17,13 +17,11 @@ jobs:
         id: publish-document
         with:
           sources: 'README.md'
-      - name: Move PDF
-        run: mv ${{ steps.publish-document.outputs.pdf }} README.pdf
       - name: Archive Modelica Binaries
         uses: actions/upload-artifact@v2
         with:
           name: railosconsist-readme
-          path: README.pdf
+          path: .publish-docs/document.pdf
           retention-days: 1
   create-release:
     name: Create Release
@@ -35,7 +33,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: railosconsist-readme
-          path: "document.pdf"
+          path: .publish-docs/document.pdf
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
@@ -63,7 +61,7 @@ jobs:
           sudo apt install zip -y
           mkdir -p release
           cp dist/RailOSConsist.exe release/
-          cp document.pdf release/README.pdf
+          cp .publish-docs/document.pdf release/README.pdf
         shell: bash
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.0
