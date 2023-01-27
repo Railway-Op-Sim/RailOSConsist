@@ -17,11 +17,13 @@ jobs:
         id: publish-document
         with:
           sources: 'README.md'
+      - name: Move PDF
+        run: mv ${{ steps.publish-document.outputs.pdf }} README.pdf
       - name: Archive Modelica Binaries
         uses: actions/upload-artifact@v2
         with:
           name: railosconsist-readme
-          path: "document.pdf"
+          path: README.pdf
           retention-days: 1
   create-release:
     name: Create Release
@@ -29,6 +31,11 @@ jobs:
     needs: [create-pdf]
     steps:
       - uses: actions/checkout@v3
+      - name: Retrieve README PDF
+        uses: actions/download-artifact@v2
+        with:
+          name: railosconsist-readme
+          path: "document.pdf"
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
@@ -49,11 +56,6 @@ jobs:
           python-version: '3.11'
           architecture: 'x64'
       - uses: Gr1N/setup-poetry@v7
-      - name: Retrieve Open Modelica model binaries
-        uses: actions/download-artifact@v2
-        with:
-          name: railosconsist-readme
-          path: "document.pdf"
       - name: Create Package
         run: |
           LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
