@@ -63,7 +63,7 @@ jobs:
           DISPLAY="" poetry run pyinstaller --clean -y RailOSConsist.spec
           mkdir -p release
           cp dist/RailOSConsist.exe release/
-          cp .publish-docs/document.pdf release/README.pdf
+          cp .publish-docs/README.pdf release/README.pdf
         shell: bash
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.0
