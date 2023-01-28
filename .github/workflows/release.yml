@@ -12,11 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Publish PDF Document
-        uses: shrink/actions-document-publish@v1
-        id: publish-document
+      - name: Markdown to PDF and HTML
+        uses: BaileyJM02/markdown-to-pdf@v1.2.0
         with:
-          sources: 'README.md'
+          images_dir: media
+          input_path: README.md
+          output_dir: .publish-docs
+          build_pdf: true
+          build_html: false
       - name: Archive README
         uses: actions/upload-artifact@v2
         with:
