@@ -19,4 +19,4 @@ The application is easy to use, just select a country from the dropdown and then
 
 When updating the start speed by typing values as opposed to adjusting with the spinbox, hit the `Enter` key to update the header.
 
-![screenshot](media/railosconsist_screenshot.png)
+![screenshot](https://raw.githubusercontent.com/Railway-Op-Sim/RailOSConsist/main/media/railosconsist_screenshot.png)
