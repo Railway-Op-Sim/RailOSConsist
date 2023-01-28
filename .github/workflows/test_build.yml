@@ -14,14 +14,17 @@ jobs:
         with:
           python-version: '3.11'
           architecture: 'x64'
-      - uses: Gr1N/setup-poetry@v7
-
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v7
+      - name: Run Unit Tests
+        run:
+          LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
+          poetry run pytest --cov=railos_consists
+        shell: bash
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
       - name: Build application
-        run: |
-          LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
-          DISPLAY="" poetry run pyinstaller --clean -y RailOSConsist.spec
+        run: poetry run pyinstaller --clean -y RailOSConsist.spec
         shell: bash
