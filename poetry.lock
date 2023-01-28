@@ -400,17 +400,6 @@ files = [
 altgraph = ">=0.17"
 
 [[package]]
-name = "multiprocessing"
-version = "2.6.2.1"
-description = "Backport of the multiprocessing package to Python 2.4 and 2.5"
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "multiprocessing-2.6.2.1.tar.gz", hash = "sha256:ef3b81ad85d7de252e5491b1daac028e17f9741cbe3625032e6eaa4ad4c79900"},
-]
-
-[[package]]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
@@ -1014,4 +1003,4 @@ requests = ">=2.0.0,<3.0.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10,<3.12"
-content-hash = "cd22170d1030034a749f7ade1c475b5d57da6c6c4fddc66fd9f7ad1d9cbc4a42"
+content-hash = "22e797209ee29fdc3e78991ad211f9abefdeb4c53bd8c7d0a71a49888af03eb7"

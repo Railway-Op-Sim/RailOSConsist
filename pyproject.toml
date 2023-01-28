@@ -9,7 +9,6 @@ packages = [{include = "railos_consist"}]
 [tool.poetry.dependencies]
 python = "^3.10,<3.12"
 pysimplegui = "^4.60.4"
-pandas = "^1.5.3"
 railostools = {git = "https://github.com/Railway-Op-Sim/railostools.git", subdirectory="python"}
 pyperclip = "^1.8.2"
 
