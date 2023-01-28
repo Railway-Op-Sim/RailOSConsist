@@ -17,7 +17,7 @@ jobs:
       - name: Setup Poetry
         uses: Gr1N/setup-poetry@v7
       - name: Run Unit Tests
-        run:
+        run: |
           LC_ALL="UTF-8" LC_CTYPE="UTF-8" poetry install
           poetry run pytest --cov=railos_consists
         shell: bash
