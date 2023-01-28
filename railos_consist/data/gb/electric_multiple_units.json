@@ -1,0 +1,590 @@
+{
+  "1972 Stock (B)": {
+    "max_speed": 72,
+    "mass": 104,
+    "brake_force": 39,
+    "power": 354
+  },
+  "1973 Stock (P)": {
+    "max_speed": 72,
+    "mass": 75,
+    "brake_force": 28,
+    "power": 354
+  },
+  "1992 Stock (Ct)": {
+    "max_speed": 100,
+    "mass": 42,
+    "brake_force": 19,
+    "power": 344
+  },
+  "1995 Stock (N)": {
+    "max_speed": 72,
+    "mass": 63,
+    "brake_force": 28,
+    "power": 344
+  },
+  "1996 Stock (J)": {
+    "max_speed": 100,
+    "mass": 100,
+    "brake_force": 56,
+    "power": 344
+  },
+  "2009 Stock (V)": {
+    "max_speed": 80,
+    "mass": 104,
+    "brake_force": 78,
+    "power": 354
+  },
+  "90+MK3+DVT": {
+    "max_speed": 161,
+    "mass": 297,
+    "brake_force": 40,
+    "power": 3728
+  },
+  "91+MK4+DVT": {
+    "max_speed": 201,
+    "mass": 360,
+    "brake_force": 81,
+    "power": 4832
+  },
+  "C Stock (Ci, H&C)": {
+    "max_speed": 64,
+    "mass": 128,
+    "brake_force": 48,
+    "power": 500
+  },
+  "Class 313/0": {
+    "max_speed": 121,
+    "mass": 93,
+    "brake_force": 35,
+    "power": 656
+  },
+  "Class 313/1": {
+    "max_speed": 121,
+    "mass": 93,
+    "brake_force": 35,
+    "power": 656
+  },
+  "Class 313/2": {
+    "max_speed": 121,
+    "mass": 93,
+    "brake_force": 35,
+    "power": 656
+  },
+  "Class 314/2": {
+    "max_speed": 121,
+    "mass": 99,
+    "brake_force": 37,
+    "power": 656
+  },
+  "Class 315/8": {
+    "max_speed": 121,
+    "mass": 99,
+    "brake_force": 37,
+    "power": 656
+  },
+  "Class 317/1": {
+    "max_speed": 161,
+    "mass": 116,
+    "brake_force": 32,
+    "power": 990
+  },
+  "Class 317/5": {
+    "max_speed": 161,
+    "mass": 116,
+    "brake_force": 32,
+    "power": 990
+  },
+  "Class 317/6": {
+    "max_speed": 161,
+    "mass": 116,
+    "brake_force": 32,
+    "power": 990
+  },
+  "Class 317/7": {
+    "max_speed": 161,
+    "mass": 116,
+    "brake_force": 32,
+    "power": 990
+  },
+  "Class 317/8": {
+    "max_speed": 161,
+    "mass": 116,
+    "brake_force": 32,
+    "power": 990
+  },
+  "Class 318": {
+    "max_speed": 145,
+    "mass": 87,
+    "brake_force": 24,
+    "power": 1072
+  },
+  "Class 319": {
+    "max_speed": 161,
+    "mass": 136,
+    "brake_force": 30,
+    "power": 1072
+  },
+  "Class 320/3": {
+    "max_speed": 145,
+    "mass": 90,
+    "brake_force": 40,
+    "power": 1072
+  },
+  "Class 321/3": {
+    "max_speed": 161,
+    "mass": 120,
+    "brake_force": 45,
+    "power": 1072
+  },
+  "Class 321/4": {
+    "max_speed": 161,
+    "mass": 120,
+    "brake_force": 45,
+    "power": 1072
+  },
+  "Class 322": {
+    "max_speed": 161,
+    "mass": 116,
+    "brake_force": 43,
+    "power": 1072
+  },
+  "Class 323": {
+    "max_speed": 145,
+    "mass": 120,
+    "brake_force": 67,
+    "power": 1168
+  },
+  "Class 325": {
+    "max_speed": 161,
+    "mass": 128,
+    "brake_force": 72,
+    "power": 1072
+  },
+  "Class 331/0": {
+    "max_speed": 161,
+    "mass": 93,
+    "brake_force": 90,
+    "power": 780
+  },
+  "Class 331/1": {
+    "max_speed": 161,
+    "mass": 124,
+    "brake_force": 93,
+    "power": 1170
+  },
+  "Class 332": {
+    "max_speed": 161,
+    "mass": 225,
+    "brake_force": 84,
+    "power": 1400
+  },
+  "Class 333": {
+    "max_speed": 161,
+    "mass": 188,
+    "brake_force": 70,
+    "power": 1400
+  },
+  "Class 334": {
+    "max_speed": 145,
+    "mass": 123,
+    "brake_force": 69,
+    "power": 1080
+  },
+  "Class 345": {
+    "max_speed": 145,
+    "mass": 261,
+    "brake_force": 195,
+    "power": 1678
+  },
+  "Class 350/1": {
+    "max_speed": 177,
+    "mass": 180,
+    "brake_force": 81,
+    "power": 1000
+  },
+  "Class 350/2": {
+    "max_speed": 161,
+    "mass": 180,
+    "brake_force": 81,
+    "power": 1000
+  },
+  "Class 350/3": {
+    "max_speed": 161,
+    "mass": 180,
+    "brake_force": 81,
+    "power": 1000
+  },
+  "Class 350/4": {
+    "max_speed": 161,
+    "mass": 180,
+    "brake_force": 81,
+    "power": 1000
+  },
+  "Class 357": {
+    "max_speed": 161,
+    "mass": 140,
+    "brake_force": 63,
+    "power": 1499
+  },
+  "Class 360/1": {
+    "max_speed": 161,
+    "mass": 148,
+    "brake_force": 66,
+    "power": 1000
+  },
+  "Class 360/5": {
+    "max_speed": 161,
+    "mass": 185,
+    "brake_force": 83,
+    "power": 1000
+  },
+  "Class 365": {
+    "max_speed": 161,
+    "mass": 136,
+    "brake_force": 76,
+    "power": 937
+  },
+  "Class 373": {
+    "max_speed": 299,
+    "mass": 900,
+    "brake_force": 202,
+    "power": 12229
+  },
+  "Class 374": {
+    "max_speed": 320,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 15660
+  },
+  "Class 375": {
+    "max_speed": 163,
+    "mass": 176,
+    "brake_force": 131,
+    "power": 1500
+  },
+  "Class 376": {
+    "max_speed": 164,
+    "mass": 180,
+    "brake_force": 134,
+    "power": 2000
+  },
+  "Class 377/1": {
+    "max_speed": 167,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 377/2": {
+    "max_speed": 169,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 377/3": {
+    "max_speed": 171,
+    "mass": 120,
+    "brake_force": 90,
+    "power": 1000
+  },
+  "Class 377/4": {
+    "max_speed": 172,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 377/5": {
+    "max_speed": 174,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 377/6": {
+    "max_speed": 175,
+    "mass": 200,
+    "brake_force": 149,
+    "power": 1500
+  },
+  "Class 377/7": {
+    "max_speed": 177,
+    "mass": 200,
+    "brake_force": 149,
+    "power": 1500
+  },
+  "Class 378/0": {
+    "max_speed": 121,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 378/1": {
+    "max_speed": 121,
+    "mass": 200,
+    "brake_force": 149,
+    "power": 1500
+  },
+  "Class 378/2": {
+    "max_speed": 121,
+    "mass": 280,
+    "brake_force": 209,
+    "power": 1500
+  },
+  "Class 379": {
+    "max_speed": 161,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1200
+  },
+  "Class 380/0": {
+    "max_speed": 161,
+    "mass": 129,
+    "brake_force": 96,
+    "power": 1000
+  },
+  "Class 380/1": {
+    "max_speed": 161,
+    "mass": 172,
+    "brake_force": 128,
+    "power": 1000
+  },
+  "Class 385": {
+    "max_speed": 161,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 387/1": {
+    "max_speed": 177,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 387/2": {
+    "max_speed": 177,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 387/3": {
+    "max_speed": 177,
+    "mass": 160,
+    "brake_force": 119,
+    "power": 1500
+  },
+  "Class 390/0": {
+    "max_speed": 201,
+    "mass": 468,
+    "brake_force": 403,
+    "power": 4876
+  },
+  "Class 390/1": {
+    "max_speed": 201,
+    "mass": 572,
+    "brake_force": 427,
+    "power": 4876
+  },
+  "Class 395": {
+    "max_speed": 225,
+    "mass": 276,
+    "brake_force": 206,
+    "power": 1680
+  },
+  "Class 397": {
+    "max_speed": 201,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 398": {
+    "max_speed": 0,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 399": {
+    "max_speed": 48,
+    "mass": 63,
+    "brake_force": 35,
+    "power": 869
+  },
+  "Class 442": {
+    "max_speed": 161,
+    "mass": 210,
+    "brake_force": 118,
+    "power": 1199
+  },
+  "Class 444": {
+    "max_speed": 161,
+    "mass": 200,
+    "brake_force": 112,
+    "power": 2000
+  },
+  "Class 450": {
+    "max_speed": 161,
+    "mass": 176,
+    "brake_force": 99,
+    "power": 1998
+  },
+  "Class 455": {
+    "max_speed": 121,
+    "mass": 132,
+    "brake_force": 49,
+    "power": 746
+  },
+  "Class 456": {
+    "max_speed": 121,
+    "mass": 70,
+    "brake_force": 20,
+    "power": 373
+  },
+  "Class 458/0": {
+    "max_speed": 161,
+    "mass": 160,
+    "brake_force": 90,
+    "power": 1620
+  },
+  "Class 458/5": {
+    "max_speed": 121,
+    "mass": 210,
+    "brake_force": 118,
+    "power": 1620
+  },
+  "Class 460": {
+    "max_speed": 161,
+    "mass": 320,
+    "brake_force": 119,
+    "power": 2699
+  },
+  "Class 465": {
+    "max_speed": 121,
+    "mass": 132,
+    "brake_force": 37,
+    "power": 2240
+  },
+  "Class 466": {
+    "max_speed": 121,
+    "mass": 66,
+    "brake_force": 18,
+    "power": 1119
+  },
+  "Class 482": {
+    "max_speed": 100,
+    "mass": 42,
+    "brake_force": 19,
+    "power": 344
+  },
+  "Class 483": {
+    "max_speed": 72,
+    "mass": 81,
+    "brake_force": 30,
+    "power": 354
+  },
+  "Class 507": {
+    "max_speed": 121,
+    "mass": 96,
+    "brake_force": 36,
+    "power": 656
+  },
+  "Class 508": {
+    "max_speed": 121,
+    "mass": 96,
+    "brake_force": 36,
+    "power": 656
+  },
+  "Class 700": {
+    "max_speed": 161,
+    "mass": 272,
+    "brake_force": 152,
+    "power": 3300
+  },
+  "Class 701": {
+    "max_speed": 161,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 707": {
+    "max_speed": 161,
+    "mass": 180,
+    "brake_force": 101,
+    "power": 1200
+  },
+  "Class 710/1": {
+    "max_speed": 121,
+    "mass": 148,
+    "brake_force": 83,
+    "power": 0
+  },
+  "Class 710/2": {
+    "max_speed": 121,
+    "mass": 148,
+    "brake_force": 83,
+    "power": 0
+  },
+  "Class 711": {
+    "max_speed": 0,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 717": {
+    "max_speed": 161,
+    "mass": 204,
+    "brake_force": 114,
+    "power": 895
+  },
+  "Class 720": {
+    "max_speed": 161,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 730": {
+    "max_speed": 0,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 769": {
+    "max_speed": 0,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 777": {
+    "max_speed": 121,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
+  "Class 801": {
+    "max_speed": 201,
+    "mass": 3321,
+    "brake_force": 1860,
+    "power": 701
+  },
+  "D78 Stock (M)": {
+    "max_speed": 80,
+    "mass": 125,
+    "brake_force": 47,
+    "power": 500
+  },
+  "G-Sub Stock": {
+    "max_speed": 55,
+    "mass": 60,
+    "brake_force": 22,
+    "power": 150
+  },
+  "S7 Stock (Ci, D, H&C)": {
+    "max_speed": 100,
+    "mass": 217,
+    "brake_force": 194,
+    "power": 373
+  },
+  "S8 Stock (M)": {
+    "max_speed": 100,
+    "mass": 248,
+    "brake_force": 222,
+    "power": 373
+  }
+}

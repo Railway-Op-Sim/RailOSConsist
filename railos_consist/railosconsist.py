@@ -1,140 +1,117 @@
-import PySimpleGUI as psg
-import railostools.ttb.parsing.components as railos_ttb_comp
-import railostools.exceptions as railos_exc
-import railos_consist.data as railos_data
-import pycountry
-import typing
+"""
+RailOSConsist Application
+=========================
+
+Main file for the RailOSConsist Utility written in PySimpleGUI.
+
+Uses a globular function to assemble a consist library from JSON files with an assumed
+key structure. Exceptions are caught to be displayed as red error messages to the user.
+
+Note: The assembly of the application is held in a function to satisfy PyInstaller
+(else it tries to launch the GUI during a build which causes it to hang).
+"""
+
+__date__ = "2023-01-28"
+__author__ = "Kristian Zarebski"
+__license__ = "GPLv3"
+__copyright__ = "Copyright 2023, Kristian Zarebski"
+
+import datetime
+import os.path
 import sys
+import typing
+
 import pyperclip
+import PySimpleGUI as psg
+import railostools.exceptions as railos_exc
+import railostools.ttb.parsing.components as railos_ttb_comp
+
+import railos_consist.common as railosc_common
+import railos_consist.data.library as railos_data
+import railos_consist.gui as railosc_gui
+
+APP_LOCATION: str = os.path.dirname(__file__)
 
 
 def launch_application() -> None:
-    _countries: typing.Dict[str, str] = {i.alpha_2: i.name for i in pycountry.countries}
+    """Launch the Application assigning the callbacks to the GUI."""
+    _window: psg.Window = railosc_gui.setup_application()
+
+    _event_keys: typing.Set[str] = {
+        "CONSIST_SELECT",
+        "START_SPEED",
+        "DESC",
+        "REF",
+        "COUNTRY_SELECT",
+    }
+    _copyable_text: str = ""
 
     def _get_code(country: str) -> str:
-        for key, value in _countries.items():
+        for key, value in railosc_common.countries.items():
             if value == country:
                 return key
         return ""
-
-
-    _country_list: typing.List[str] = [_countries[i] for i in railos_data.consists.keys()]
-
-    psg.theme("Default1")
-
-    _ref_col = psg.Column(
-        [
-            [psg.Text("Reference")],
-            [psg.Input(default_text="1A00", size=(10, 1), key="REF", enable_events=True)],
-        ],
-        expand_x=True,
-    )
-    _desc_col = psg.Column(
-        [[psg.Text("Description")], [psg.Input(key="DESC", enable_events=True)]],
-        expand_x=True,
-    )
-    _start_speed_col = psg.Column(
-        [
-            [psg.Text("Start Speed (km/h)")],
-            [
-                psg.Spin(
-                    values=list(range(0, 999)),
-                    initial_value=0,
-                    size=(10, 1),
-                    key="START_SPEED",
-                    enable_events=True,
-                    bind_return_key=True
-                )
-            ],
-        ],
-        expand_x=True,
-    )
-    _select_country = psg.Column(
-        [
-            [psg.Text("Country")],
-            [
-                psg.Combo(
-                    _country_list,
-                    enable_events=True,
-                    readonly=True,
-                    default_value=_country_list[0],
-                    tooltip="Country Code",
-                    key="COUNTRY_SELECT",
-                )
-            ],
-        ]
-    )
-    _select_consist = psg.Column(
-        [
-            [psg.Text("Consist")],
-            [
-                psg.Combo(
-                    list(railos_data.consists[list(railos_data.consists.keys())[0]].keys()),
-                    enable_events=True,
-                    readonly=True,
-                    key="CONSIST_SELECT",
-                )
-            ],
-        ]
-    )
-
-    _app_layout = [
-        [_ref_col, _desc_col, _start_speed_col],
-        [
-            _select_country,
-            _select_consist,
-        ],
-        [psg.Text(size=(70, 1), key="OUT_TEXT", text_color="black"), psg.Button("Copy", key="COPY")],
-    ]
-
-    _window = psg.Window("RailOS TTB Header Generator", _app_layout)
-
-    _event_keys: typing.Set[str] = ["CONSIST_SELECT", "START_SPEED", "DESC", "REF", "COUNTRY_SELECT"]
-    _copyable_text: str = ""
 
     while True:
         _event, _values = _window.read()
         if _event == psg.WIN_CLOSED or _event == "Exit":
             _window.close()
             sys.exit(0)
-        if _event == "COUNTRY_SELECT":
-            _window["CONSIST_SELECT"].update(
-                values=list(
-                    railos_data.consists[_get_code(_values["COUNTRY_SELECT"])].keys()
+        try:
+            if _event == "COUNTRY_SELECT":
+                _window["CONSIST_SELECT"].update(
+                    values=list(
+                        railos_data.consist_library[
+                            _get_code(_values["COUNTRY_SELECT"])
+                        ].keys()
+                    )
                 )
-            )
-        if _event in _event_keys:
-            if any(not _values.get(i, None) and i != "START_SPEED" for i in _event_keys):
-                continue
-            _country_consists = railos_data.consists[_get_code(_values["COUNTRY_SELECT"])]
-            _consist_template = _country_consists.headers[_values["CONSIST_SELECT"]]
-            if (_start_speed := _values["START_SPEED"]):
-                _max_speed: int = _country_consists.max_speeds[_values["CONSIST_SELECT"]]
-                if _max_speed < _start_speed:
+            if _event in _event_keys:
+                if any(
+                    not _values.get(i, None) and i != "START_SPEED" for i in _event_keys
+                ):
+                    continue
+                _country: str = _get_code(_values["COUNTRY_SELECT"])
+                _headers: typing.Dict[str, str] = railos_data.consist_library.headers(
+                    _country
+                )
+                _max_speeds: typing.Dict[
+                    str, int
+                ] = railos_data.consist_library.max_speeds(_country)
+                _consist_template = _headers[_values["CONSIST_SELECT"]]
+                if _start_speed := _values["START_SPEED"]:
+                    _max_speed: int = _max_speeds[_values["CONSIST_SELECT"]]
+                    if _max_speed < _start_speed:
+                        _window["OUT_TEXT"].update(
+                            value="Error: Start speed cannot be greater than maximum speed.",
+                            text_color="red",
+                        )
+                        continue
+                _copyable_text = _consist_template.format(
+                    reference=_values["REF"],
+                    description=_values["DESC"],
+                    start_speed=_values["START_SPEED"],
+                )
+                try:
+                    railos_ttb_comp.parse_header(_copyable_text)
+                except railos_exc.ParsingError:
                     _window["OUT_TEXT"].update(
-                        value="Error: Start speed cannot be greater than maximum speed.",
-                        text_color="red"
+                        value="Error: Validation of header string failed.",
+                        text_color="red",
                     )
                     continue
-            _copyable_text = _consist_template.format(
-                reference=_values["REF"],
-                description=_values["DESC"],
-                start_speed=_values["START_SPEED"],
+                _window["OUT_TEXT"].update(value=_copyable_text, text_color="black")
+            if _event == "COPY" and _copyable_text:
+                pyperclip.copy(_copyable_text)
+        except (KeyError, AssertionError) as e:
+            _out_file_name: str = (
+                f"error_{datetime.datetime.now().strftime('%Y%M%d%H%S')}.log"
             )
-            try:
-                railos_ttb_comp.parse_header(_copyable_text)
-            except railos_exc.ParsingError:
-                _window["OUT_TEXT"].update(
-                    value="Error: Validation of header string failed.",
-                    text_color="red"
-                )
-                continue
             _window["OUT_TEXT"].update(
-                value=_copyable_text,
-                text_color="black"
+                value=f"Error: See {_out_file_name}.", text_color="red"
             )
-        if _event == "COPY" and _copyable_text:
-            pyperclip.copy(_copyable_text)
+            with open(os.path.join(APP_LOCATION, _out_file_name), "w") as out_f:
+                out_f.write(e.args[0])
 
 
 if __name__ in "__main__":
