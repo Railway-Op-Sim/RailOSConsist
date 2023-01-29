@@ -61,7 +61,7 @@ def setup_application() -> psg.Window:
                     [
                         value
                         for key, value in railosc_common.countries.items()
-                        if key in railos_data.consist_library
+                        if key in railos_data.consist_library.countries
                     ],
                     enable_events=True,
                     readonly=True,

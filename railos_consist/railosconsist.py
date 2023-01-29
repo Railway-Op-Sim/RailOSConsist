@@ -61,9 +61,9 @@ def launch_application() -> None:
             if _event == "COUNTRY_SELECT":
                 _window["CONSIST_SELECT"].update(
                     values=list(
-                        railos_data.consist_library[
+                        railos_data.consist_library.consists(
                             _get_code(_values["COUNTRY_SELECT"])
-                        ].keys()
+                        )
                     )
                 )
             if _event in _event_keys:
