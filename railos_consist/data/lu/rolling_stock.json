@@ -1,0 +1,44 @@
+{
+  "Class 2000": {
+    "max_speed": 160,
+    "total_mass": 104,
+    "braking_force": 83,
+    "power": 1220
+  },
+  "Class 2200": {
+    "max_speed": 160,
+    "total_mass": 193,
+    "braking_force": 155,
+    "power": 2340
+  },
+  "Class 2300": {
+    "max_speed": 160,
+    "total_mass": 170,
+    "braking_force": 140,
+    "power": 3000
+  },
+  "Class 3000 (loco)": {
+    "max_speed": 124,
+    "total_mass": 90,
+    "braking_force": 72,
+    "power": 5200
+  },
+  "Class 3000 (+5 car)": {
+    "max_speed": 124,
+    "total_mass": 340,
+    "braking_force": 270,
+    "power": 5200
+  },
+  "Class 4000 (loco)": {
+    "max_speed": 140,
+    "total_mass": 84,
+    "braking_force": 67,
+    "power": 5600
+  },
+  "Class 4000 (+5 car)": {
+    "max_speed": 140,
+    "total_mass": 334,
+    "braking_force": 270,
+    "power": 5600
+  }
+}
