@@ -10,7 +10,7 @@ a = Analysis(
     [os.path.join('railos_consist', 'railosconsist.py')],
     pathex=[sysconfig.get_paths()["purelib"]],
     binaries=[],
-    datas=[(os.path.join('railos_consist', 'data'), os.path.join('railos_consist', 'data'))],
+    datas=[(os.path.join('railos_consist', 'data'), os.path.join('railos_consist', 'data')), (os.path.join('railos_consist', 'icon.ico'), os.path.join('railos_consist', 'icon.ico'))],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -43,5 +43,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['media/icon.ico'],
+    icon=['railos_consist/icon.ico'],
 )

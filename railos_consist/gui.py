@@ -10,8 +10,10 @@ __date__ = "2023-01-28"
 __author__ = "Kristian Zarebski"
 __license__ = "GPLv3"
 __copyright__ = "Copyright 2023, Kristian Zarebski"
+__version__ = "v1.0.1"
 
 import PySimpleGUI as psg
+import os.path
 
 import railos_consist.common as railosc_common
 import railos_consist.data.library as railos_data
@@ -118,4 +120,8 @@ def setup_application() -> psg.Window:
         ],
     ]
 
-    return psg.Window("RailOS TTB Header Generator", _app_layout)
+    return psg.Window(
+        title=f"Railway Operation Simulator Timetable Header Generator ({__version__})",
+        layout=_app_layout,
+        icon=os.path.join(os.path.dirname(__file__), "icon.ico")
+    )

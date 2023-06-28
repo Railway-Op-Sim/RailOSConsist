@@ -1,0 +1,122 @@
+{
+    "RABDe 500": {
+        "max_speed": 200,
+        "mass": 355,
+        "brake_force": 285,
+        "power": 5200
+    },
+    "RABe 501": {
+        "max_speed": 300,
+        "mass": 380,
+        "brake_force": 300,
+        "power": 4720
+    },
+    "RABe 502/IR 100": {
+        "max_speed": 200,
+        "mass": 230,
+        "brake_force": 185,
+        "power": 3750
+    },
+    "RAB 502/IR 200": {
+        "max_speed": 200,
+        "mass": 453,
+        "brake_force": 360,
+        "power": 7500
+    },
+    "RAB 502/IC 200": {
+        "max_speed": 200,
+        "mass": 453,
+        "brake_force": 360,
+        "power": 7500
+    },
+    "RABe 503": {
+        "max_speed": 250,
+        "mass": 450,
+        "brake_force": 360,
+        "power": 5500
+    },
+    "RABe 511 (4 car)": {
+        "max_speed": 160,
+        "mass": 212,
+        "brake_force": 145,
+        "power": 4000
+    },
+    "RABe 511 (6 car)": {
+        "max_speed": 160,
+        "mass": 297,
+        "brake_force": 238,
+        "power": 4000
+    },
+    "RABe 514": {
+        "max_speed": 140,
+        "mass": 225,
+        "brake_force": 180,
+        "power": 3200
+    },
+    "RABe 515 (4 car)": {
+        "max_speed": 190,
+        "mass": 216,
+        "brake_force": 170,
+        "power": 4000
+    },
+    "RABe 515 (6 car)": {
+        "max_speed": 190,
+        "mass": 310,
+        "brake_force": 250,
+        "power": 4000
+    },
+    "RABe 520": {
+        "max_speed": 115,
+        "mass": 100,
+        "brake_force": 80,
+        "power": 760
+    },
+    "RABe 521": {
+        "max_speed": 120,
+        "mass": 120,
+        "brake_force": 100,
+        "power": 2000
+    },
+    "RABe 522": {
+        "max_speed": 120,
+        "mass": 120,
+        "brake_force": 100,
+        "power": 2000
+    },
+    "RABe 523": {
+        "max_speed": 160,
+        "mass": 120,
+        "brake_force": 100,
+        "power": 2000
+    },
+    "RABe 524": {
+        "max_speed": 160,
+        "mass": 133,
+        "brake_force": 106,
+        "power": 2000
+    },
+    "RABe 526/7": {
+        "max_speed": 140,
+        "mass": 87,
+        "brake_force": 60,
+        "power": 700
+    },
+    "RABe 526/6": {
+        "max_speed": 140,
+        "mass": 87,
+        "brake_force": 60,
+        "power": 700
+    },
+    "RBDe 560": {
+        "max_speed": 140,
+        "mass": 70,
+        "brake_force": 58,
+        "power": 1650
+    },
+    "RBe 540": {
+        "max_speed": 125,
+        "mass": 68,
+        "brake_force": 50,
+        "power": 1988
+    }
+}
