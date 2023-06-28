@@ -54,7 +54,7 @@ def launch_application() -> None:
 
     while True:
         _event, _values = _window.read()
-        if _event == psg.WIN_CLOSED or _event == "Exit":
+        if _event in [psg.WIN_CLOSED, "Exit"]:
             _window.close()
             sys.exit(0)
         try:

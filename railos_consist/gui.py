@@ -42,7 +42,7 @@ def setup_application() -> psg.Window:
             [psg.Text("Start Speed (km/h)")],
             [
                 psg.Spin(
-                    values=list(range(0, 999)),
+                    values=list(range(999)),
                     initial_value=0,
                     size=(10, 1),
                     key="START_SPEED",
@@ -105,14 +105,14 @@ def setup_application() -> psg.Window:
         ],
         [
             psg.Text(
-                "Error: No data found."
-                if not railos_data.consist_library.countries
-                else "",
+                ""
+                if railos_data.consist_library.countries
+                else "Error: No data found.",
                 size=(70, 1),
                 key="OUT_TEXT",
-                text_color="red"
-                if not railos_data.consist_library.countries
-                else "black",
+                text_color="black"
+                if railos_data.consist_library.countries
+                else "red",
             ),
             psg.Button("Copy", key="COPY"),
         ],

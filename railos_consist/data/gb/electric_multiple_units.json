@@ -270,43 +270,43 @@
     "power": 2000
   },
   "Class 377/1": {
-    "max_speed": 167,
+    "max_speed": 161,
     "mass": 160,
     "brake_force": 119,
     "power": 1500
   },
   "Class 377/2": {
-    "max_speed": 169,
+    "max_speed": 161,
     "mass": 160,
     "brake_force": 119,
     "power": 1500
   },
   "Class 377/3": {
-    "max_speed": 171,
+    "max_speed": 161,
     "mass": 120,
     "brake_force": 90,
     "power": 1000
   },
   "Class 377/4": {
-    "max_speed": 172,
+    "max_speed": 161,
     "mass": 160,
     "brake_force": 119,
     "power": 1500
   },
   "Class 377/5": {
-    "max_speed": 174,
+    "max_speed": 161,
     "mass": 160,
     "brake_force": 119,
     "power": 1500
   },
   "Class 377/6": {
-    "max_speed": 175,
+    "max_speed": 161,
     "mass": 200,
     "brake_force": 149,
     "power": 1500
   },
   "Class 377/7": {
-    "max_speed": 177,
+    "max_speed": 161,
     "mass": 200,
     "brake_force": 149,
     "power": 1500
