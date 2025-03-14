@@ -332,6 +332,18 @@ unicode = ["unicodedata2 (>=15.1.0) ; python_version <= \"3.12\""]
 woff = ["brotli (>=1.0.1) ; platform_python_implementation == \"CPython\"", "brotlicffi (>=0.8.0) ; platform_python_implementation != \"CPython\"", "zopfli (>=0.1.4)"]
 
 [[package]]
+name = "freesimplegui"
+version = "5.2.0"
+description = "The free-forever Python GUI framework."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "freesimplegui-5.2.0-py3-none-any.whl", hash = "sha256:db4b7811227cd4d5c19a5473bc1ea7f950372bc91d5d57d02d6da045ce0e9d47"},
+    {file = "freesimplegui-5.2.0.tar.gz", hash = "sha256:50c869b8d5d84f48175260a2169e427394ff1b22b109b5141858d5f50e63befa"},
+]
+
+[[package]]
 name = "igraph"
 version = "0.11.8"
 description = "High performance graph data structures and algorithms"
@@ -1074,18 +1086,6 @@ files = [
 ]
 
 [[package]]
-name = "pysimplegui"
-version = "5.0.8.2"
-description = "PySimpleGUI is now located on a private PyPI server.  Please add to your pip command: --extra-index-url https://PySimpleGUI.net/install"
-optional = false
-python-versions = ">=3.6"
-groups = ["main"]
-files = [
-    {file = "pysimplegui-5.0.8.2-py3-none-any.whl", hash = "sha256:b353edf41e9be6863da465731f12638693a022f01eee8c52bb3b6d50a3498692"},
-    {file = "pysimplegui-5.0.8.2.tar.gz", hash = "sha256:29580f9a432c9d54523ee65c61b90e8b83d10690f8daf66abedba415e5e90c65"},
-]
-
-[[package]]
 name = "pytest"
 version = "8.3.5"
 description = "pytest: simple powerful testing with Python"
@@ -1385,4 +1385,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "bdcd4f97b695c4ed55792b4678be3bfe4151d18cbeb3d44d5127e01f06e8e119"
+content-hash = "283c96626874ad532d99dcd32926d346a63538cd23b39d4762e6bf1f7e60eb9d"

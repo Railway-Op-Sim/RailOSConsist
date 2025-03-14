@@ -22,7 +22,7 @@ import sys
 import typing
 
 import pyperclip
-import PySimpleGUI as psg
+import FreeSimpleGUI as fsg
 import railostools.exceptions as railos_exc
 import railostools.ttb.parsing.components as railos_ttb_comp
 
@@ -35,7 +35,7 @@ APP_LOCATION: str = os.path.dirname(__file__)
 
 def launch_application() -> None:
     """Launch the Application assigning the callbacks to the GUI."""
-    _window: psg.Window = railosc_gui.setup_application()
+    _window: fsg.Window = railosc_gui.setup_application()
 
     _event_keys: typing.Set[str] = {
         "CONSIST_SELECT",
@@ -54,7 +54,7 @@ def launch_application() -> None:
 
     while True:
         _event, _values = _window.read()
-        if _event in [psg.WIN_CLOSED, "Exit"]:
+        if _event in [fsg.WIN_CLOSED, "Exit"]:
             _window.close()
             sys.exit(0)
         try:

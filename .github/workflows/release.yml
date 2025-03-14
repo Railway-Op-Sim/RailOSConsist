@@ -17,14 +17,15 @@ jobs:
         with:
           images_dir: media
           input_path: README.md
-          output_dir: .publish-docs
+          output_dir: pdfs 
           build_pdf: true
           build_html: false
       - name: Archive README
         uses: actions/upload-artifact@v4
         with:
           name: railosconsist-readme
-          path: .publish-docs/
+          path: pdfs
+          if-no-files-found: error
           retention-days: 1
   create-release:
     name: Create Release

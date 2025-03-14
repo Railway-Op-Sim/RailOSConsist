@@ -12,38 +12,38 @@ __license__ = "GPLv3"
 __copyright__ = "Copyright 2023, Kristian Zarebski"
 __version__ = "v1.0.1"
 
-import PySimpleGUI as psg
+import FreeSimpleGUI as fsg
 import os.path
 
 import railos_consist.common as railosc_common
 import railos_consist.data.library as railos_data
 
 
-def setup_application() -> psg.Window:
+def setup_application() -> fsg.Window:
     """Defines the initial user interface before callback assignment."""
 
-    psg.theme("Default1")
+    fsg.theme("Default1")
 
-    _ref_col = psg.Column(
+    _ref_col = fsg.Column(
         [
-            [psg.Text("Reference")],
+            [fsg.Text("Reference")],
             [
-                psg.Input(
+                fsg.Input(
                     default_text="1A00", size=(10, 1), key="REF", enable_events=True
                 )
             ],
         ],
         expand_x=True,
     )
-    _desc_col = psg.Column(
-        [[psg.Text("Description")], [psg.Input(key="DESC", enable_events=True)]],
+    _desc_col = fsg.Column(
+        [[fsg.Text("Description")], [fsg.Input(key="DESC", enable_events=True)]],
         expand_x=True,
     )
-    _start_speed_col = psg.Column(
+    _start_speed_col = fsg.Column(
         [
-            [psg.Text("Start Speed (km/h)")],
+            [fsg.Text("Start Speed (km/h)")],
             [
-                psg.Spin(
+                fsg.Spin(
                     values=list(range(999)),
                     initial_value=0,
                     size=(10, 1),
@@ -55,11 +55,11 @@ def setup_application() -> psg.Window:
         ],
         expand_x=True,
     )
-    _select_country = psg.Column(
+    _select_country = fsg.Column(
         [
-            [psg.Text("Country")],
+            [fsg.Text("Country")],
             [
-                psg.Combo(
+                fsg.Combo(
                     [
                         value
                         for key, value in railosc_common.countries.items()
@@ -81,11 +81,11 @@ def setup_application() -> psg.Window:
             ],
         ]
     )
-    _select_consist = psg.Column(
+    _select_consist = fsg.Column(
         [
-            [psg.Text("Consist")],
+            [fsg.Text("Consist")],
             [
-                psg.Combo(
+                fsg.Combo(
                     railos_data.consist_library.consists(
                         railos_data.consist_library.countries[0]
                     )
@@ -106,7 +106,7 @@ def setup_application() -> psg.Window:
             _select_consist,
         ],
         [
-            psg.Text(
+            fsg.Text(
                 ""
                 if railos_data.consist_library.countries
                 else "Error: No data found.",
@@ -116,11 +116,11 @@ def setup_application() -> psg.Window:
                 if railos_data.consist_library.countries
                 else "red",
             ),
-            psg.Button("Copy", key="COPY"),
+            fsg.Button("Copy", key="COPY"),
         ],
     ]
 
-    return psg.Window(
+    return fsg.Window(
         title=f"Railway Operation Simulator Timetable Header Generator ({__version__})",
         layout=_app_layout,
         icon=os.path.join(os.path.dirname(__file__), "icon.ico")
