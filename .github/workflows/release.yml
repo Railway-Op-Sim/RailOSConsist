@@ -11,7 +11,7 @@ jobs:
     name: Create Readme
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Markdown to PDF and HTML
         uses: BaileyJM02/markdown-to-pdf@v1.2.0
         with:
@@ -21,7 +21,7 @@ jobs:
           build_pdf: true
           build_html: false
       - name: Archive README
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: railosconsist-readme
           path: .publish-docs/
@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Retrieve README PDF
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: railosconsist-readme
           path: .publish-docs/
@@ -46,15 +46,15 @@ jobs:
         with:
           run: echo $GITHUB_REPOSITORY | cut -d '/' -f 2 | cut --complement -f1 -d '-' | xargs
       - name: Set Version Suffix
-        uses: mathiasvr/command-output@v1
+        uses: mathiasvr/command-output@v2.0.0
         id: outver
         with:
           run: |
             VERSION="${{ steps.previoustag.outputs.tag }}"
             echo ${VERSION//./_} | xargs
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
           architecture: 'x64'
       - name: Setup Poetry
         run: |
@@ -69,7 +69,7 @@ jobs:
           cp .publish-docs/README.pdf release/README.pdf
         shell: bash
       - name: Archive Release
-        uses: thedoctor0/zip-release@0.7.0
+        uses: thedoctor0/zip-release@0.7.6
         with:
           type: 'zip'
           filename: 'release.zip'
@@ -81,7 +81,7 @@ jobs:
           mv release.zip $DIR_NAME.zip
         shell: bash
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
