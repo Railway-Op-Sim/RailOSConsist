@@ -253,8 +253,8 @@
   },
   "Class 374": {
     "max_speed": 320,
-    "mass": 0,
-    "brake_force": 0,
+    "mass": 921,
+    "brake_force": 135,
     "power": 15660
   },
   "Class 375": {
@@ -347,11 +347,17 @@
     "brake_force": 128,
     "power": 1000
   },
-  "Class 385": {
+  "Class 385/0": {
     "max_speed": 161,
     "mass": 0,
     "brake_force": 0,
-    "power": 0
+    "power": 1500
+  },
+  "Class 385/1": {
+    "max_speed": 161,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 2000
   },
   "Class 387/1": {
     "max_speed": 177,
@@ -391,15 +397,15 @@
   },
   "Class 397": {
     "max_speed": 201,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+    "mass": 188,
+    "brake_force": 28,
+    "power": 2640
   },
   "Class 398": {
-    "max_speed": 0,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+    "max_speed": 100,
+    "mass": 73,
+    "brake_force": 8,
+    "power": 600
   },
   "Class 399": {
     "max_speed": 48,
@@ -497,11 +503,17 @@
     "brake_force": 152,
     "power": 3300
   },
-  "Class 701": {
+  "Class 701/0": {
     "max_speed": 161,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+    "mass": 347,
+    "brake_force": 52,
+    "power": 4000
+  },
+  "Class 701/5": {
+    "max_speed": 161,
+    "mass": 174,
+    "brake_force": 26,
+    "power": 2000
   },
   "Class 707": {
     "max_speed": 161,
@@ -513,19 +525,25 @@
     "max_speed": 121,
     "mass": 148,
     "brake_force": 83,
-    "power": 0
+    "power": 1800
   },
   "Class 710/2": {
     "max_speed": 121,
     "mass": 148,
     "brake_force": 83,
-    "power": 0
+    "power": 1800
   },
-  "Class 711": {
-    "max_speed": 0,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+  "Class 710/3": {
+    "max_speed": 121,
+    "mass": 182,
+    "brake_force": 83,
+    "power": 2250
+  },
+  "Class 720": {
+    "max_speed": 161,
+    "mass": 193,
+    "brake_force": 29,
+    "power": 2300
   },
   "Class 717": {
     "max_speed": 161,
@@ -533,17 +551,17 @@
     "brake_force": 114,
     "power": 895
   },
-  "Class 720": {
-    "max_speed": 161,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+  "Class 730/0": {
+    "max_speed": 145,
+    "mass": 150,
+    "brake_force": 20,
+    "power": 1170
   },
-  "Class 730": {
-    "max_speed": 0,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+  "Class 730/2": {
+    "max_speed": 180,
+    "mass": 200,
+    "brake_force": 22,
+    "power": 1950
   },
   "Class 769": {
     "max_speed": 0,
@@ -553,9 +571,9 @@
   },
   "Class 777": {
     "max_speed": 121,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
+    "mass": 99,
+    "brake_force": 14,
+    "power": 2100
   },
   "Class 801": {
     "max_speed": 201,
