@@ -545,6 +545,30 @@
     "brake_force": 0,
     "power": 0
   },
+  "Class 755 (AC)": {
+      "max_speed": 160,
+      "mass": 164,
+      "brake_force": 0,
+      "power": 2600
+  },
+  "Class 755/3 (Diesel)": {
+    "max_speed": 160,
+    "mass": 164,
+    "brake_force": 0,
+    "power": 960
+  },
+  "Class 755/4 (Diesel)": {
+    "max_speed": 160,
+    "mass": 164,
+    "brake_force": 0,
+    "power": 1920
+  },
+  "Class 756": {
+    "max_speed": 121,
+    "mass": 0,
+    "brake_force": 0,
+    "power": 0
+  },
   "Class 769": {
     "max_speed": 0,
     "mass": 0,

@@ -2,28 +2,27 @@
 name = "railos-consist"
 version = "2.0.0"
 description = "RailOS Consist assembler tool"
-authors = [
-    {name = "Kristian Zarębski",email = "krizar312@gmail.com"}
-]
-license = {text = "GPL-v3"}
+authors = [{ name = "Kristian Zarębski", email = "krizar312@gmail.com" }]
+license = { text = "GPL-v3" }
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
 dependencies = [
     "railostools @ git+https://github.com/Railway-Op-Sim/railostools.git@v0.6.0#subdirectory=python",
-    "pyperclip (>=1.9.0,<2.0.0)",
-    "freesimplegui (>=5.2.0,<6.0.0)",
+    "pyperclip>=1.11.0",
+    "freesimplegui>=5.2.0.post1",
 ]
 
 [project.scripts]
 railosconsist = 'railos_consist.railosconsist:launch_application'
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.9.0,<0.10.0"]
+build-backend = "uv_build"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.5"
-pytest-cov = "^6.0.0"
-ruff = "^0.11.0"
-pyinstaller = "^6.12.0"
-
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.19.0",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.7",
+]
