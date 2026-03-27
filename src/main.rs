@@ -132,7 +132,7 @@ enum Message {
 ///
 /// # Arguments
 /// * `_theme` - The current application theme (unused)
-/// * `_status` - The button's current interaction status
+/// * `status` - The button's current interaction status
 ///
 /// # Returns
 /// A `button::Style` with grey color scheme and state-dependent shading
@@ -361,7 +361,8 @@ impl FormData {
                         }
                     }
                     StringInput::Description => {
-                        self.description = value;
+                        // Strip semicolons from description as they're used as delimiters in the header format
+                        self.description = value.replace(';', "");
                         self.current_header = self.generate_header();
                     }
                     StringInput::Reference => {
@@ -608,7 +609,7 @@ mod tests {
         };
         form.consist_list.insert("Test".to_string(), consist);
 
-        form.update(Message::TextInputChanged(StringInput::Reference, "3C45".to_string()));
+        let _ = form.update(Message::TextInputChanged(StringInput::Reference, "3C45".to_string()));
 
         assert_eq!(form.reference, "3C45");
         assert!(form.current_header.is_some());
@@ -628,7 +629,7 @@ mod tests {
         };
         form.consist_list.insert("Test".to_string(), consist);
 
-        form.update(
+        let _ = form.update(
             Message::TextInputChanged(StringInput::Description, "London Service".to_string())
         );
 
@@ -650,7 +651,7 @@ mod tests {
         };
         form.consist_list.insert("Test".to_string(), consist);
 
-        form.update(
+        let _ = form.update(
             Message::TextInputChanged(StringInput::Description, "London; Service".to_string())
         );
 
@@ -672,7 +673,9 @@ mod tests {
         };
         form.consist_list.insert("Class 390".to_string(), consist);
 
-        form.update(Message::TextInputChanged(StringInput::Consist, "Class 390".to_string()));
+        let _ = form.update(
+            Message::TextInputChanged(StringInput::Consist, "Class 390".to_string())
+        );
 
         assert_eq!(form.consist, Some("Class 390".to_string()));
         assert!(form.current_header.is_some());
@@ -682,7 +685,7 @@ mod tests {
     fn test_update_numeric_start_speed() {
         let mut form = FormData::new().0;
 
-        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 120));
+        let _ = form.update(Message::NumericInputChanged(IntInput::StartSpeed, 120));
 
         assert_eq!(form.start_speed, 120);
     }
@@ -692,7 +695,7 @@ mod tests {
         let mut form = FormData::new().0;
         form.start_speed = 100;
 
-        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 0));
+        let _ = form.update(Message::NumericInputChanged(IntInput::StartSpeed, 0));
 
         assert_eq!(form.start_speed, 0);
     }
@@ -702,11 +705,11 @@ mod tests {
         let mut form = FormData::new().0;
 
         // Simulate user interaction sequence
-        form.update(Message::TextInputChanged(StringInput::Reference, "5D10".to_string()));
-        form.update(
+        let _ = form.update(Message::TextInputChanged(StringInput::Reference, "5D10".to_string()));
+        let _ = form.update(
             Message::TextInputChanged(StringInput::Description, "Freight Train".to_string())
         );
-        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 60));
+        let _ = form.update(Message::NumericInputChanged(IntInput::StartSpeed, 60));
 
         assert_eq!(form.reference, "5D10");
         assert_eq!(form.description, "Freight Train");
@@ -722,17 +725,17 @@ mod tests {
         let mut form = FormData::new().0;
 
         // Step 1: Enter reference
-        form.update(Message::TextInputChanged(StringInput::Reference, "7E01".to_string()));
+        let _ = form.update(Message::TextInputChanged(StringInput::Reference, "7E01".to_string()));
         assert_eq!(form.reference, "7E01");
 
         // Step 2: Enter description
-        form.update(
+        let _ = form.update(
             Message::TextInputChanged(StringInput::Description, "Intercity Express".to_string())
         );
         assert_eq!(form.description, "Intercity Express");
 
         // Step 3: Set start speed
-        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 90));
+        let _ = form.update(Message::NumericInputChanged(IntInput::StartSpeed, 90));
         assert_eq!(form.start_speed, 90);
 
         // Step 4: Manually set consist (normally done after country selection)
@@ -745,7 +748,7 @@ mod tests {
         form.consist_list.insert("IC225".to_string(), consist);
         form.consist_options.push("IC225".to_string());
 
-        form.update(Message::TextInputChanged(StringInput::Consist, "IC225".to_string()));
+        let _ = form.update(Message::TextInputChanged(StringInput::Consist, "IC225".to_string()));
 
         // Final check: header should be generated
         let expected = "7E01;Intercity Express;90;180;520;260;5500";
