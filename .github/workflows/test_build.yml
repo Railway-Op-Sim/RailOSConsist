@@ -2,6 +2,7 @@ name: RailOSConsist
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 jobs:
   testing:
     runs-on: windows-latest
