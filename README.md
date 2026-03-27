@@ -22,11 +22,11 @@ The application is easy to use, just select a country from the dropdown and then
 
 ## Contributing
 
-The software is built using Rust, a memory-safe compiled programming language. All code is contained within [`src/main.rs`](./src/main.rs).
+The software is built using Rust, a memory-safe compiled programming language. The source code is available on the [GitHub Repository](https://github.com/Railway-Op-Sim/RailOSConsist). All code is contained within the `src/main.rs` file.
 
 ### Data
 
-Country data is stored within the `data` directory, the information is kept in JSON files held in directories named in lower case from the ISO-2 country code for that country. For example the Class 139 Diesel Multiple Unit from the UK can be found in `railosconsist/data/gb/diesel_multiple_units.json`:
+Country data is stored within the `data` directory, the information is kept in JSON files held in directories named in lower case from the ISO-2 country code for that country. For example the Class 139 Diesel Multiple Unit from the UK can be found in `data/gb/diesel_multiple_units.json`:
 
 ```json
 {
