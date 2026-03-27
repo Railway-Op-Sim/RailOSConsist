@@ -136,7 +136,7 @@ enum Message {
 ///
 /// # Returns
 /// A `button::Style` with grey color scheme and state-dependent shading
-fn plain_grey_button_theme(_theme: &Theme, _status: button::Status) -> button::Style {
+fn plain_grey_button_theme(_theme: &Theme, status: button::Status) -> button::Style {
     // Define the default button style (light grey background)
     let active = button::Style {
         background: Some(Background::Color(Color::from_rgb8(240, 240, 240))),
@@ -411,9 +411,10 @@ impl FormData {
             "",
             self.reference.as_str()
         ).on_input(|s| Message::TextInputChanged(StringInput::Reference, s));
+        let actual_description = self.description.replace(";", "");
         let description_input: TextInput<'_, Message> = text_input(
             "",
-            &self.description.as_str()
+            &actual_description.as_str()
         ).on_input(|s| Message::TextInputChanged(StringInput::Description, s));
         // Speed input field with automatic parsing from string to integer
         let max_speed_input: TextInput<'_, Message> = text_input(
@@ -525,4 +526,245 @@ fn main() {
         .settings(settings)
         .theme(Theme::Light)
         .run();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // ============================================================================
+    // Consist Struct Tests
+    // ============================================================================
+
+    #[test]
+    fn test_consist_deserialization() {
+        let json = r#"{"max_speed": 160, "mass": 450, "brake_force": 200, "power": 2500}"#;
+        let consist: Consist = serde_json::from_str(json).expect("Failed to deserialize Consist");
+
+        assert_eq!(consist.max_speed, 160);
+        assert_eq!(consist.mass, 450);
+        assert_eq!(consist.brake_force, 200);
+        assert_eq!(consist.power, 2500);
+    }
+
+    #[test]
+    fn test_consist_deserialization_min_values() {
+        let json = r#"{"max_speed": 0, "mass": 0, "brake_force": 0, "power": 0}"#;
+        let consist: Consist = serde_json::from_str(json).expect("Failed to deserialize Consist");
+
+        assert_eq!(consist.max_speed, 0);
+        assert_eq!(consist.mass, 0);
+    }
+
+    // ============================================================================
+    // Header Generation Tests
+    // ============================================================================
+
+    #[test]
+    fn test_generate_header_missing_consist() {
+        let mut form = FormData::new().0;
+        form.reference = "1A00".to_string();
+        form.description = "Test Service".to_string();
+        form.consist = None;
+
+        assert_eq!(form.generate_header(), None);
+    }
+
+    #[test]
+    fn test_generate_header_valid() {
+        let mut form = FormData::new().0;
+        form.reference = "2B30".to_string();
+        form.description = "Express Service".to_string();
+        form.start_speed = 80;
+        form.consist = Some("Class 390".to_string());
+
+        let consist = Consist {
+            max_speed: 200,
+            mass: 500,
+            brake_force: 250,
+            power: 5000,
+        };
+        form.consist_list.insert("Class 390".to_string(), consist);
+
+        let header = form.generate_header();
+        assert_eq!(header, Some("2B30;Express Service;80;200;500;250;5000".to_string()));
+    }
+
+    // ============================================================================
+    // Message Update Tests
+    // ============================================================================
+
+    #[test]
+    fn test_update_reference_changed() {
+        let mut form = FormData::new().0;
+        form.consist = Some("Test".to_string());
+        form.description = "Test".to_string();
+
+        let consist = Consist {
+            max_speed: 100,
+            mass: 200,
+            brake_force: 150,
+            power: 1000,
+        };
+        form.consist_list.insert("Test".to_string(), consist);
+
+        form.update(Message::TextInputChanged(StringInput::Reference, "3C45".to_string()));
+
+        assert_eq!(form.reference, "3C45");
+        assert!(form.current_header.is_some());
+    }
+
+    #[test]
+    fn test_update_description_changed_valid() {
+        let mut form = FormData::new().0;
+        form.reference = "1A00".to_string();
+        form.consist = Some("Test".to_string());
+
+        let consist = Consist {
+            max_speed: 100,
+            mass: 200,
+            brake_force: 150,
+            power: 1000,
+        };
+        form.consist_list.insert("Test".to_string(), consist);
+
+        form.update(
+            Message::TextInputChanged(StringInput::Description, "London Service".to_string())
+        );
+
+        assert_eq!(form.description, "London Service");
+        assert!(form.current_header.is_some());
+    }
+
+    #[test]
+    fn test_update_description_changed_semicolons() {
+        let mut form = FormData::new().0;
+        form.reference = "1A00".to_string();
+        form.consist = Some("Test".to_string());
+
+        let consist = Consist {
+            max_speed: 100,
+            mass: 200,
+            brake_force: 150,
+            power: 1000,
+        };
+        form.consist_list.insert("Test".to_string(), consist);
+
+        form.update(
+            Message::TextInputChanged(StringInput::Description, "London; Service".to_string())
+        );
+
+        assert_eq!(form.description, "London Service");
+        assert!(form.current_header.is_some());
+    }
+
+    #[test]
+    fn test_update_consist_changed() {
+        let mut form = FormData::new().0;
+        form.reference = "1A00".to_string();
+        form.description = "Test".to_string();
+
+        let consist = Consist {
+            max_speed: 100,
+            mass: 200,
+            brake_force: 150,
+            power: 1000,
+        };
+        form.consist_list.insert("Class 390".to_string(), consist);
+
+        form.update(Message::TextInputChanged(StringInput::Consist, "Class 390".to_string()));
+
+        assert_eq!(form.consist, Some("Class 390".to_string()));
+        assert!(form.current_header.is_some());
+    }
+
+    #[test]
+    fn test_update_numeric_start_speed() {
+        let mut form = FormData::new().0;
+
+        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 120));
+
+        assert_eq!(form.start_speed, 120);
+    }
+
+    #[test]
+    fn test_update_start_speed_to_zero() {
+        let mut form = FormData::new().0;
+        form.start_speed = 100;
+
+        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 0));
+
+        assert_eq!(form.start_speed, 0);
+    }
+
+    #[test]
+    fn test_update_multiple_messages_sequence() {
+        let mut form = FormData::new().0;
+
+        // Simulate user interaction sequence
+        form.update(Message::TextInputChanged(StringInput::Reference, "5D10".to_string()));
+        form.update(
+            Message::TextInputChanged(StringInput::Description, "Freight Train".to_string())
+        );
+        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 60));
+
+        assert_eq!(form.reference, "5D10");
+        assert_eq!(form.description, "Freight Train");
+        assert_eq!(form.start_speed, 60);
+    }
+
+    // ============================================================================
+    // Integration Tests
+    // ============================================================================
+
+    #[test]
+    fn test_complete_form_flow() {
+        let mut form = FormData::new().0;
+
+        // Step 1: Enter reference
+        form.update(Message::TextInputChanged(StringInput::Reference, "7E01".to_string()));
+        assert_eq!(form.reference, "7E01");
+
+        // Step 2: Enter description
+        form.update(
+            Message::TextInputChanged(StringInput::Description, "Intercity Express".to_string())
+        );
+        assert_eq!(form.description, "Intercity Express");
+
+        // Step 3: Set start speed
+        form.update(Message::NumericInputChanged(IntInput::StartSpeed, 90));
+        assert_eq!(form.start_speed, 90);
+
+        // Step 4: Manually set consist (normally done after country selection)
+        let consist = Consist {
+            max_speed: 180,
+            mass: 520,
+            brake_force: 260,
+            power: 5500,
+        };
+        form.consist_list.insert("IC225".to_string(), consist);
+        form.consist_options.push("IC225".to_string());
+
+        form.update(Message::TextInputChanged(StringInput::Consist, "IC225".to_string()));
+
+        // Final check: header should be generated
+        let expected = "7E01;Intercity Express;90;180;520;260;5500";
+        assert_eq!(form.generate_header(), Some(expected.to_string()));
+    }
+
+    #[test]
+    fn test_form_reset_behavior() {
+        let mut form = FormData::new().0;
+
+        // Fill in some data
+        form.reference = "1A00".to_string();
+        form.description = "Test".to_string();
+        form.start_speed = 100;
+
+        // Reset by creating new
+        let (form, _) = FormData::new();
+        assert_eq!(form.reference, "1A00");
+        assert_eq!(form.description, "");
+        assert_eq!(form.start_speed, 0);
+    }
 }
