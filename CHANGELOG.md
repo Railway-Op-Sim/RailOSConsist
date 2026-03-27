@@ -1,5 +1,9 @@
 # Change Log
 
+# Unreleased
+
+- Major re-write into Rust as the backend language.
+
 # [v1.0.1](https://github.com/Railway-Op-Sim/RailOSConsist/releases/tag/v1.0.1) - 2023-06-28
 - Fix country selection bug which became apparent when other country databases added.
 - Added Luxembourg to countries list.

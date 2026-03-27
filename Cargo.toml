@@ -1,0 +1,20 @@
+[package]
+name = "railosconsist"
+version = "3.0.0"
+edition = "2024"
+
+[dependencies]
+cli-clipboard = "0.4.0"
+glob = "0.3.3"
+iced = "0.14.0"
+image = "0.25.10"
+log = "0.4.29"
+natord = "1.0.9"
+rust-embed = { version = "8.11.0", features = [
+    "include-exclude",
+    "interpolate-folder-path",
+] }
+rust_iso3166 = "0.1.14"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+simple_logger = "5.2.0"
