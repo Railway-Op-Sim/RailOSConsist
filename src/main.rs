@@ -279,24 +279,53 @@ fn load_icon() -> Option<window::Icon> {
 impl FormData {
     /// Creates a new FormData instance with default values.
     ///
-    /// Initializes the form with a default reference number of "1A00" and empty other fields.
+    /// Initializes the form with a default reference number of "1A00" and preselects
+    /// the first available country and its first available consist.
     ///
     /// # Returns
     /// A tuple containing the new FormData instance and a no-op Task
     fn new() -> (Self, Task<Message>) {
-        (
-            FormData {
-                reference: "1A00".to_string(),
-                description: String::new(),
-                start_speed: 0,
-                consist: None,
-                country_code: None,
-                consist_list: HashMap::new(),
-                consist_options: Vec::new(),
-                current_header: None,
-            },
-            Task::none(),
-        )
+        // Get all available countries and sort them
+        let mut countries = get_country_codes();
+        countries.sort_by(|a, b| natord::compare(a, b));
+
+        // Initialize with first country (if available)
+        let (initial_country_code, initial_consist_list, initial_consist_options, initial_consist) =
+            if let Some(first_country) = countries.first() {
+                // Find the country in the ISO 3166-1 list to get the country code
+                if let Some(country) = ALL.iter().find(|c| c.name == first_country) {
+                    let consists = load_data(country.alpha2.to_lowercase());
+
+                    // Sort consist options by name
+                    let mut options: Vec<String> = consists.keys().cloned().collect();
+                    options.sort_by(|a, b| natord::compare(a, b));
+
+                    // Set first consist as initial if available
+                    let first_consist = options.first().cloned();
+
+                    (Some(first_country.clone()), consists, options, first_consist)
+                } else {
+                    (None, HashMap::new(), Vec::new(), None)
+                }
+            } else {
+                (None, HashMap::new(), Vec::new(), None)
+            };
+
+        let mut form = FormData {
+            reference: "1A00".to_string(),
+            description: String::new(),
+            start_speed: 0,
+            consist: initial_consist,
+            country_code: initial_country_code,
+            consist_list: initial_consist_list,
+            consist_options: initial_consist_options,
+            current_header: None,
+        };
+
+        // Generate header if we have all required fields
+        form.current_header = form.generate_header();
+
+        (form, Task::none())
     }
     /// Generates a RailOS timetable header string from the current form data.
     ///
@@ -349,15 +378,20 @@ impl FormData {
                         // Look up the selected country in the ISO 3166-1 standard list
                         if let Some(country) = ALL.iter().find(|c| c.name == value) {
                             self.country_code = Some(country.name.to_string());
-                            self.consist = None; // Clear previous consist selection
                             // Load consist data for the selected country using its 2-letter code
                             self.consist_list = load_data(country.alpha2.to_lowercase());
                             // Extract consist names from the loaded data for the dropdown menu
-                            self.consist_options = self.consist_list
+                            let mut consist_options: Vec<String> = self.consist_list
                                 .keys()
                                 .cloned()
                                 .into_iter()
                                 .collect();
+                            // Sort consists by natural order
+                            consist_options.sort_by(|a, b| natord::compare(a, b));
+                            self.consist_options = consist_options;
+                            // Set first consist as selected if available
+                            self.consist = self.consist_options.first().cloned();
+                            self.current_header = self.generate_header();
                         }
                     }
                     StringInput::Description => {
