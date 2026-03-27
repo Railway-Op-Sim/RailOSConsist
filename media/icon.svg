@@ -7,9 +7,9 @@
    viewBox="0 0 67.733332 67.733335"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
    sodipodi:docname="icon.svg"
-   inkscape:export-filename="/home/kristian/railos-consist/media/icon.png"
+   inkscape:export-filename="..\..\RailOSConsist\media\RailOSConsist.png"
    inkscape:export-xdpi="658.86102"
    inkscape:export-ydpi="658.86102"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -29,49 +29,75 @@
      units="px"
      width="256px"
      inkscape:zoom="2.1238383"
-     inkscape:cx="125.48036"
+     inkscape:cx="125.71579"
      inkscape:cy="157.49787"
-     inkscape:window-width="1846"
-     inkscape:window-height="1016"
-     inkscape:window-x="74"
-     inkscape:window-y="27"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <rect
+       x="251.43157"
+       y="-25.425664"
+       width="100.76097"
+       height="101.70266"
+       id="rect3" />
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#ffffff;fill-opacity:1;stroke:#fe0101;stroke-width:6.49383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
+       style="fill:#ffffff;fill-opacity:1;stroke:#d40000;stroke-width:7.7303;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
        id="path846"
        cx="33.866665"
        cy="33.866665"
-       r="29.991571" />
+       r="29.002222" />
     <g
-       id="g40849"
-       transform="translate(0.54688686,1.4343375)">
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.765;stroke-opacity:1;stop-color:#000000"
-         id="rect34090"
-         width="16.593073"
-         height="26.843498"
-         x="38.004112"
-         y="19.01058" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:27.7357px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.693398"
-         x="10.688092"
-         y="42.237152"
-         id="text2410"><tspan
-           sodipodi:role="line"
-           id="tspan2408"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;fill-opacity:1;stroke-width:0.693398"
-           x="10.688092"
-           y="42.237152">4;<tspan
-   style="fill:#ffffff;fill-opacity:1"
-   id="tspan36995">0</tspan></tspan></text>
+       id="g4"
+       transform="translate(0.11607934,-1.1773109)">
+      <g
+         id="g40849"
+         transform="matrix(0.9488003,0,0,0.9488003,2.2469063,3.1551409)">
+        <rect
+           style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.765;stroke-opacity:1;stop-color:#000000"
+           id="rect34090"
+           width="16.593073"
+           height="26.843498"
+           x="38.004112"
+           y="19.01058" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:30.1137px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.752847"
+           x="12.280742"
+           y="40.00526"
+           id="text2410"
+           transform="scale(0.92103413,1.0857361)"><tspan
+             sodipodi:role="line"
+             id="tspan2408"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;fill-opacity:1;stroke-width:0.752847"
+             x="12.280742"
+             y="40.00526"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:BritishRailDarkNormal;-inkscape-font-specification:BritishRailDarkNormal;stroke-width:0.752847"
+               id="tspan2">4</tspan><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Montserrat;-inkscape-font-specification:Montserrat"
+               id="tspan4">;</tspan></tspan></text>
+        <text
+           xml:space="preserve"
+           transform="matrix(0.83032696,0,0,0.83032696,-207.96094,34.165361)"
+           id="text3"
+           style="font-weight:500;font-size:40px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Medium';text-align:center;white-space:pre;shape-inside:url(#rect3);display:inline;fill:#ffffff;fill-opacity:1"><tspan
+             x="289.8725"
+             y="11.33796"
+             id="tspan5"><tspan
+               style="font-weight:normal;font-family:BritishRailDarkNormal;-inkscape-font-specification:BritishRailDarkNormal"
+               id="tspan1">0</tspan></tspan></text>
+      </g>
     </g>
   </g>
 </svg>
