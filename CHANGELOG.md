@@ -1,8 +1,12 @@
 # Change Log
 
-# Unreleased
-
+# [v3.0.0](https://github.com/Railway-Op-Sim/RailOSConsist/releases/tag/v3.0.0) - 2026-03-27
 - Major re-write into Rust as the backend language.
+
+# [v2.0.0](https://github.com/Railway-Op-Sim/RailOSConsist/releases/tag/v2.0.0) - 2025-03-14
+
+- Rebuilt in Python3.13
+- Uses FreeSimpleGUI as alternative UI.
 
 # [v1.0.1](https://github.com/Railway-Op-Sim/RailOSConsist/releases/tag/v1.0.1) - 2023-06-28
 - Fix country selection bug which became apparent when other country databases added.
