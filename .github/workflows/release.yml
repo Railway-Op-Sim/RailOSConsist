@@ -51,7 +51,7 @@ jobs:
     name: Generate Developer Documentation PDF
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - name: Generate Cargo documentation
         run: cargo doc --no-deps --document-private-items
@@ -130,9 +130,12 @@ jobs:
       - name: Build Rust Release (macOS)
         if: runner.os == 'macOS'
         run: cargo bundle --release --target ${{ matrix.target }}
-      - name: Build Rust Release (Windows/Linux)
-        if: runner.os != 'macOS'
+      - name: Build Rust Release (Windows)
+        if: runner.os == 'Windows'
         run: cargo build --release --target ${{ matrix.target }}
+      - name: Build Rust Release (Linux)
+        if: runner.os == 'Linux'
+        run: cargo build --release
       - name: Create Package
         run: |
           mkdir -p release
@@ -143,8 +146,8 @@ jobs:
             # Windows: Copy the executable
             cp target/${{ matrix.target }}/release/railosconsist.exe release/
           else
-            # Linux: Copy the binary
-            cp target/${{ matrix.target }}/release/railosconsist release/
+            # Linux: Copy the binary (native build, no target directory)
+            cp target/release/railosconsist release/
           fi
           cp .publish-docs/README.pdf release/README.pdf
         shell: bash
@@ -161,6 +164,10 @@ jobs:
           path: "${{ matrix.asset_name }}_${{ steps.outver.outputs.version }}.zip"
           if-no-files-found: error
           retention-days: 1
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: "${{ matrix.asset_name }}_${{ steps.outver.outputs.version }}.zip"
 
   publish-release:
     name: Publish Release
