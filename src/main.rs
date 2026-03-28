@@ -14,6 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
+#![windows_subsystem = "windows"]
 
 // Main application module: Provides the UI and logic for generating RailOS
 // timetable service headers from consist data.

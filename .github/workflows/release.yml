@@ -28,10 +28,58 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
+  quality-check:
+    name: Quality Control Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Check code formatting
+        run: cargo fmt -- --check
+      - name: Run Clippy lints
+        run: cargo clippy --all -- -D warnings
+      - name: Check for security vulnerabilities
+        run: cargo audit
+      - name: Build documentation
+        run: cargo doc --no-deps --document-private-items
+
+  generate-docs-pdf:
+    name: Generate Developer Documentation PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Generate Cargo documentation
+        run: cargo doc --no-deps --document-private-items
+      - name: Install wkhtmltopdf
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wkhtmltopdf xvfb
+      - name: Convert documentation to PDF
+        run: |
+          xvfb-run -a wkhtmltopdf \
+            --enable-local-file-access \
+            --print-media-type \
+            --margin-top 10 \
+            --margin-bottom 10 \
+            --margin-left 10 \
+            --margin-right 10 \
+            "target/doc/RailOSConsist/index.html" \
+            "RailOSConsist-Developer-API-Documentation.pdf"
+      - name: Upload Documentation PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: railosconsist-documentation-pdf
+          path: RailOSConsist-Developer-API-Documentation.pdf
+          if-no-files-found: error
+          retention-days: 1
+
   build-release:
     name: Build Release (${{ matrix.os }} - ${{ matrix.arch }})
     runs-on: ${{ matrix.os }}
-    needs: [create-pdf]
+    needs: [create-pdf, quality-check, generate-docs-pdf]
     strategy:
       matrix:
         include:
@@ -74,14 +122,26 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
-      - name: Build Rust Release
+      - name: Install cargo-bundle (macOS)
+        if: runner.os == 'macOS'
+        run: cargo install cargo-bundle
+      - name: Build Rust Release (macOS)
+        if: runner.os == 'macOS'
+        run: cargo bundle --release --target ${{ matrix.target }}
+      - name: Build Rust Release (Windows/Linux)
+        if: runner.os != 'macOS'
         run: cargo build --release --target ${{ matrix.target }}
       - name: Create Package
         run: |
           mkdir -p release
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            # macOS: Copy the app bundle
+            cp -r target/release/bundle/osx/RailOSConsist.app release/
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            # Windows: Copy the executable
             cp target/${{ matrix.target }}/release/railosconsist.exe release/
           else
+            # Linux: Copy the binary
             cp target/${{ matrix.target }}/release/railosconsist release/
           fi
           cp .publish-docs/README.pdf release/README.pdf
@@ -120,6 +180,7 @@ jobs:
           mv release-artifacts/railosconsist-macos-x86_64/* final-release/ || true
           mv release-artifacts/railosconsist-macos-aarch64/* final-release/ || true
           mv release-artifacts/railosconsist-linux-x86_64/* final-release/ || true
+          mv release-artifacts/railosconsist-documentation-pdf/* final-release/ || true
         shell: bash
       - name: Create Release
         uses: softprops/action-gh-release@v2.0.7

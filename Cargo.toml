@@ -1,11 +1,10 @@
 [package]
-name = "railosconsist"
+name = "RailOSConsist"
 version = "3.0.0"
 edition = "2024"
 
 [dependencies]
 cli-clipboard = "0.4.0"
-glob = "0.3.3"
 iced = "0.14.0"
 image = "0.25.10"
 log = "0.4.29"
@@ -18,3 +17,17 @@ rust_iso3166 = "0.1.14"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 simple_logger = "5.2.0"
+
+[target.'cfg(windows)'.build-dependencies]
+embed-resource = "2.4"
+
+[package.metadata.bundle]
+name = "RailOSConsist"
+identifier = "com.railwaytycoon.railosconsist"
+version = "3.0.0"
+copyright = "Copyright (C) 2026 Kristian Zarębski"
+category = "Utility"
+short_description = "Railway Operation Simulator Timetable Header Generator"
+long_description = "Generate RailOS timetable service headers from railway consist data"
+icon = ["media/RailOSConsist.png"]
+resources = ["data/"]
