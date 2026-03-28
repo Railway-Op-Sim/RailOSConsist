@@ -367,6 +367,13 @@ impl FormData {
     /// # Returns
     /// A no-op Task for async operations
     fn update(&mut self, message: Message) -> Task<Message> {
+        if self.reference.len() < 4 {
+            self.current_header = Some(
+                String::from("Reference must be between 4 and 8 characters in length.")
+            );
+        } else if self.description.len() < 1 {
+            self.current_header = Some(String::from("Description cannot be empty"));
+        }
         match message {
             Message::TextInputChanged(field, value) => {
                 log::debug!("Setting {:?} to '{value}'", field);
@@ -402,7 +409,9 @@ impl FormData {
                     }
                     StringInput::Reference => {
                         self.reference = value;
-                        self.current_header = self.generate_header();
+                        if self.reference.len() > 3 {
+                            self.current_header = self.generate_header();
+                        }
                     }
                 }
                 Task::none()
@@ -417,10 +426,12 @@ impl FormData {
                 Task::none()
             }
             Message::CopyTrigger => {
-                let mut clipboard = ClipboardContext::new().unwrap();
-                if let Some(header) = self.current_header.clone() {
-                    log::debug!("Copying {header} to clipboard.");
-                    let _ = clipboard.set_contents(header);
+                if self.reference.len() > 3 && self.description.len() > 0 {
+                    let mut clipboard = ClipboardContext::new().unwrap();
+                    if let Some(header) = self.current_header.clone() {
+                        log::debug!("Copying {header} to clipboard.");
+                        let _ = clipboard.set_contents(header);
+                    }
                 }
                 Task::none()
             }
@@ -446,12 +457,27 @@ impl FormData {
         let reference_input: TextInput<'_, Message> = text_input(
             "",
             self.reference.as_str()
-        ).on_input(|s| Message::TextInputChanged(StringInput::Reference, s));
+        ).on_input(|s|
+            Message::TextInputChanged(StringInput::Reference, if
+                s.len() > 8 ||
+                !s.chars().all(char::is_alphanumeric)
+            {
+                self.reference.clone()
+            } else {
+                s
+            })
+        );
         let actual_description = self.description.replace(";", "");
         let description_input: TextInput<'_, Message> = text_input(
             "",
             &actual_description.as_str()
-        ).on_input(|s| Message::TextInputChanged(StringInput::Description, s));
+        ).on_input(|s|
+            Message::TextInputChanged(StringInput::Description, if s.len() > 60 {
+                self.description.clone()
+            } else {
+                s
+            })
+        );
         // Speed input field with automatic parsing from string to integer
         let max_speed_input: TextInput<'_, Message> = text_input(
             "",
@@ -459,7 +485,7 @@ impl FormData {
         ).on_input(|s| {
             // Parse input as integer; default to 0 if parsing fails (non-numeric input)
             match s.parse() {
-                Ok(n) => Message::NumericInputChanged(IntInput::StartSpeed, n),
+                Ok(n) => Message::NumericInputChanged(IntInput::StartSpeed, std::cmp::min(400, n)),
                 Err(_) => Message::NumericInputChanged(IntInput::StartSpeed, 0),
             }
         });

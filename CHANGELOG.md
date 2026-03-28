@@ -1,4 +1,9 @@
 # Change Log
+# [v3.0.1](https://github.com/Railway-Op-Sim/RailOSConsist/releases/tag/v3.0.1) - 2026-03-28
+
+- Ensure icon set on Windows release.
+- Remove terminal being opened on window.
+- Add validation messages.
 
 # [v3.0.0](https://github.com/Railway-Op-Sim/RailOSConsist/releases/tag/v3.0.0) - 2026-03-27
 - Major re-write into Rust as the backend language.
