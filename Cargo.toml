@@ -29,5 +29,5 @@ copyright = "Copyright (C) 2026 Kristian Zarębski"
 category = "Utility"
 short_description = "Railway Operation Simulator Timetable Header Generator"
 long_description = "Generate RailOS timetable service headers from railway consist data"
-icon = ["media/RailOSConsist.png"]
+icon = ["media/RailOSConsist.icns", "media/RailOSConsist.png"]
 resources = ["data/"]
