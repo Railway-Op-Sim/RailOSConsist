@@ -40,6 +40,8 @@ jobs:
         run: cargo fmt -- --check
       - name: Run Clippy lints
         run: cargo clippy --all -- -D warnings
+      - name: Install cargo-audit
+        run: cargo install cargo-audit
       - name: Check for security vulnerabilities
         run: cargo audit
       - name: Build documentation
