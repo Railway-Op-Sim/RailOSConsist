@@ -4,7 +4,6 @@
 /// - Windows: Embeds the application icon in the executable using winres
 /// - macOS: Configured in Cargo.toml metadata.bundle section for cargo-bundle
 /// - Linux: Uses system icon theme defaults
-use embed_resource;
 
 fn main() {
     #[cfg(target_os = "windows")]

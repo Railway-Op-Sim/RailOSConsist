@@ -19,17 +19,17 @@
 // Main application module: Provides the UI and logic for generating RailOS
 // timetable service headers from consist data.
 
-use std::collections::HashSet;
-use std::collections::HashMap;
-use std::path::Path;
-use rust_iso3166::{ from_alpha2, ALL };
-use rust_embed::Embed;
+use iced::{Background, Color, Length, Pixels, Shadow, Size, Task, Theme, window};
 use image::GenericImageView;
-use iced::{ Length, Pixels, Size, Task, Theme, window, Color, Background, Shadow };
-use simple_logger::{ self, SimpleLogger };
+use rust_embed::Embed;
+use rust_iso3166::{ALL, from_alpha2};
+use simple_logger::{self, SimpleLogger};
+use std::collections::HashMap;
+use std::collections::HashSet;
+use std::path::Path;
 
-use iced::widget::{ Space, TextInput, button, column, pick_list, row, text, text_input };
-use cli_clipboard::{ ClipboardContext, ClipboardProvider };
+use cli_clipboard::{ClipboardContext, ClipboardProvider};
+use iced::widget::{Space, TextInput, button, column, pick_list, row, text, text_input};
 use serde::Deserialize;
 
 /// Embedded asset container for JSON data files.
@@ -148,16 +148,14 @@ fn plain_grey_button_theme(_theme: &Theme, status: button::Status) -> button::St
 
     // Apply darker shades for hover and pressed states to provide visual feedback
     match status {
-        button::Status::Hovered =>
-            button::Style {
-                background: Some(Background::Color(Color::from_rgb8(225, 225, 225))),
-                ..active
-            },
-        button::Status::Pressed =>
-            button::Style {
-                background: Some(Background::Color(Color::from_rgb8(210, 210, 210))),
-                ..active
-            },
+        button::Status::Hovered => button::Style {
+            background: Some(Background::Color(Color::from_rgb8(225, 225, 225))),
+            ..active
+        },
+        button::Status::Pressed => button::Style {
+            background: Some(Background::Color(Color::from_rgb8(210, 210, 210))),
+            ..active
+        },
         _ => active,
     }
 }
@@ -188,9 +186,8 @@ fn load_data(country_code: String) -> HashMap<String, Consist> {
             // Extract the file from the embedded assets
             if let Some(embedded_file) = Asset::get(file_path.as_ref()) {
                 // Parse the JSON file into a HashMap of consist definitions
-                let file_consists: Result<HashMap<String, Consist>, _> = serde_json::from_slice(
-                    &embedded_file.data
-                );
+                let file_consists: Result<HashMap<String, Consist>, _> =
+                    serde_json::from_slice(&embedded_file.data);
 
                 // Merge parsed consists into the main HashMap, or log errors
                 match file_consists {
@@ -227,12 +224,12 @@ fn get_country_codes() -> Vec<String> {
 
         // Extract country code from directory structure: data/<country_code>/file.json
         // Uses option chaining to safely extract and convert the parent directory name to a country
-        if
-            let Some(country_name) = path
-                .parent() // Get parent directory (country code)
-                .and_then(|p| p.file_name()) // Extract directory name as OsStr
-                .and_then(|f| f.to_str()) // Convert to string slice
-                .and_then(|n| from_alpha2(n.to_uppercase().as_str())) // Look up ISO country by code
+        if let Some(country_name) = path
+            .parent() // Get parent directory (country code)
+            .and_then(|p| p.file_name()) // Extract directory name as OsStr
+            .and_then(|f| f.to_str()) // Convert to string slice
+            .and_then(|n| from_alpha2(n.to_uppercase().as_str()))
+        // Look up ISO country by code
         {
             // Add the full country name (e.g., "Beigium" for "be")
             country_codes.insert(country_name.name.to_string());
@@ -304,7 +301,12 @@ impl FormData {
                     // Set first consist as initial if available
                     let first_consist = options.first().cloned();
 
-                    (Some(first_country.clone()), consists, options, first_consist)
+                    (
+                        Some(first_country.clone()),
+                        consists,
+                        options,
+                        first_consist,
+                    )
                 } else {
                     (None, HashMap::new(), Vec::new(), None)
                 }
@@ -340,18 +342,16 @@ impl FormData {
             return None;
         }
         if let Some(consist) = self.consist.clone() {
-            return Some(
-                format!(
-                    "{};{};{};{};{};{};{}",
-                    self.reference,
-                    self.description,
-                    self.start_speed,
-                    self.consist_list[&consist].max_speed,
-                    self.consist_list[&consist].mass,
-                    self.consist_list[&consist].brake_force,
-                    self.consist_list[&consist].power
-                )
-            );
+            return Some(format!(
+                "{};{};{};{};{};{};{}",
+                self.reference,
+                self.description,
+                self.start_speed,
+                self.consist_list[&consist].max_speed,
+                self.consist_list[&consist].mass,
+                self.consist_list[&consist].brake_force,
+                self.consist_list[&consist].power
+            ));
         }
         None
     }
@@ -368,9 +368,9 @@ impl FormData {
     /// A no-op Task for async operations
     fn update(&mut self, message: Message) -> Task<Message> {
         if self.reference.len() < 4 {
-            self.current_header = Some(
-                String::from("Reference must be between 4 and 8 characters in length.")
-            );
+            self.current_header = Some(String::from(
+                "Reference must be between 4 and 8 characters in length.",
+            ));
         } else if self.description.len() < 1 {
             self.current_header = Some(String::from("Description cannot be empty"));
         }
@@ -389,11 +389,8 @@ impl FormData {
                             // Load consist data for the selected country using its 2-letter code
                             self.consist_list = load_data(country.alpha2.to_lowercase());
                             // Extract consist names from the loaded data for the dropdown menu
-                            let mut consist_options: Vec<String> = self.consist_list
-                                .keys()
-                                .cloned()
-                                .into_iter()
-                                .collect();
+                            let mut consist_options: Vec<String> =
+                                self.consist_list.keys().cloned().into_iter().collect();
                             // Sort consists by natural order
                             consist_options.sort_by(|a, b| natord::compare(a, b));
                             self.consist_options = consist_options;
@@ -454,41 +451,40 @@ impl FormData {
         let mut consist_list = self.consist_options.clone();
         consist_list.sort_by(|a, b| natord::compare(a, b));
 
-        let reference_input: TextInput<'_, Message> = text_input(
-            "",
-            self.reference.as_str()
-        ).on_input(|s|
-            Message::TextInputChanged(StringInput::Reference, if
-                s.len() > 8 ||
-                !s.chars().all(char::is_alphanumeric)
-            {
-                self.reference.clone()
-            } else {
-                s
-            })
-        );
+        let reference_input: TextInput<'_, Message> = text_input("", self.reference.as_str())
+            .on_input(|s| {
+                Message::TextInputChanged(
+                    StringInput::Reference,
+                    if s.len() > 8 || !s.chars().all(char::is_alphanumeric) {
+                        self.reference.clone()
+                    } else {
+                        s
+                    },
+                )
+            });
         let actual_description = self.description.replace(";", "");
-        let description_input: TextInput<'_, Message> = text_input(
-            "",
-            &actual_description.as_str()
-        ).on_input(|s|
-            Message::TextInputChanged(StringInput::Description, if s.len() > 60 {
-                self.description.clone()
-            } else {
-                s
-            })
-        );
+        let description_input: TextInput<'_, Message> =
+            text_input("", &actual_description.as_str()).on_input(|s| {
+                Message::TextInputChanged(
+                    StringInput::Description,
+                    if s.len() > 60 {
+                        self.description.clone()
+                    } else {
+                        s
+                    },
+                )
+            });
         // Speed input field with automatic parsing from string to integer
-        let max_speed_input: TextInput<'_, Message> = text_input(
-            "",
-            format!("{}", &self.start_speed).as_str()
-        ).on_input(|s| {
-            // Parse input as integer; default to 0 if parsing fails (non-numeric input)
-            match s.parse() {
-                Ok(n) => Message::NumericInputChanged(IntInput::StartSpeed, std::cmp::min(400, n)),
-                Err(_) => Message::NumericInputChanged(IntInput::StartSpeed, 0),
-            }
-        });
+        let max_speed_input: TextInput<'_, Message> =
+            text_input("", format!("{}", &self.start_speed).as_str()).on_input(|s| {
+                // Parse input as integer; default to 0 if parsing fails (non-numeric input)
+                match s.parse() {
+                    Ok(n) => {
+                        Message::NumericInputChanged(IntInput::StartSpeed, std::cmp::min(400, n))
+                    }
+                    Err(_) => Message::NumericInputChanged(IntInput::StartSpeed, 0),
+                }
+            });
         // Build the UI layout using Iced's declarative macros (column, row, etc.)
         // FillPortion divides available space proportionally
         column![
@@ -511,7 +507,8 @@ impl FormData {
                     max_speed_input.width(Length::FillPortion(2))
                 ],
                 Space::new().width(20)
-            ].spacing(10),
+            ]
+            .spacing(10),
             // Dropdown selection row for country and consist
             // pick_list: second param is currently selected value, third is message callback
             row![
@@ -519,33 +516,35 @@ impl FormData {
                 column![
                     text("Country").width(Length::FillPortion(5)),
                     Space::new().height(10),
-                    pick_list(iso_2_codes, self.country_code.as_ref(), |s|
+                    pick_list(iso_2_codes, self.country_code.as_ref(), |s| {
                         Message::TextInputChanged(StringInput::Country, s)
-                    )
+                    })
                 ],
                 column![
                     text("Consist").width(Length::FillPortion(5)),
                     Space::new().height(10),
-                    pick_list(consist_list, self.consist.as_ref(), |s|
+                    pick_list(consist_list, self.consist.as_ref(), |s| {
                         Message::TextInputChanged(StringInput::Consist, s)
-                    ).width(Length::FillPortion(5))
+                    })
+                    .width(Length::FillPortion(5))
                 ],
                 Space::new().width(20)
-            ].spacing(10),
+            ]
+            .spacing(10),
             row![
                 Space::new().width(20),
-                text(self.current_header.clone().unwrap_or(String::new())).width(
-                    Length::FillPortion(8)
-                ),
+                text(self.current_header.clone().unwrap_or(String::new()))
+                    .width(Length::FillPortion(8)),
                 button("Copy")
                     .on_press(Message::CopyTrigger)
                     .width(Length::FillPortion(2))
                     .style(plain_grey_button_theme),
                 Space::new().width(20)
-            ].spacing(10)
-        ]
+            ]
             .spacing(10)
-            .into()
+        ]
+        .spacing(10)
+        .into()
     }
 }
 
@@ -571,20 +570,22 @@ fn main() {
     let icon: Option<window::Icon> = load_icon();
 
     // Initialize the Iced application with three required callbacks:
-    let _ = iced
-        ::application(FormData::new, FormData::update, FormData::view)
+    let _ = iced::application(FormData::new, FormData::update, FormData::view)
         .window(window::Settings {
-            size: Size { width: 750.0, height: 200.0 },
+            size: Size {
+                width: 750.0,
+                height: 200.0,
+            },
             icon: icon,
             resizable: false,
             ..window::Settings::default()
         })
-        .title(|_state: &FormData|
+        .title(|_state: &FormData| {
             format!(
                 "Railway Operation Simulator Timetable Header Generator v{}",
                 env!("CARGO_PKG_VERSION")
             )
-        )
+        })
         .settings(settings)
         .theme(Theme::Light)
         .run();
@@ -649,7 +650,10 @@ mod tests {
         form.consist_list.insert("Class 390".to_string(), consist);
 
         let header = form.generate_header();
-        assert_eq!(header, Some("2B30;Express Service;80;200;500;250;5000".to_string()));
+        assert_eq!(
+            header,
+            Some("2B30;Express Service;80;200;500;250;5000".to_string())
+        );
     }
 
     // ============================================================================
@@ -670,7 +674,10 @@ mod tests {
         };
         form.consist_list.insert("Test".to_string(), consist);
 
-        let _ = form.update(Message::TextInputChanged(StringInput::Reference, "3C45".to_string()));
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Reference,
+            "3C45".to_string(),
+        ));
 
         assert_eq!(form.reference, "3C45");
         assert!(form.current_header.is_some());
@@ -690,9 +697,10 @@ mod tests {
         };
         form.consist_list.insert("Test".to_string(), consist);
 
-        let _ = form.update(
-            Message::TextInputChanged(StringInput::Description, "London Service".to_string())
-        );
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Description,
+            "London Service".to_string(),
+        ));
 
         assert_eq!(form.description, "London Service");
         assert!(form.current_header.is_some());
@@ -712,9 +720,10 @@ mod tests {
         };
         form.consist_list.insert("Test".to_string(), consist);
 
-        let _ = form.update(
-            Message::TextInputChanged(StringInput::Description, "London; Service".to_string())
-        );
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Description,
+            "London; Service".to_string(),
+        ));
 
         assert_eq!(form.description, "London Service");
         assert!(form.current_header.is_some());
@@ -734,9 +743,10 @@ mod tests {
         };
         form.consist_list.insert("Class 390".to_string(), consist);
 
-        let _ = form.update(
-            Message::TextInputChanged(StringInput::Consist, "Class 390".to_string())
-        );
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Consist,
+            "Class 390".to_string(),
+        ));
 
         assert_eq!(form.consist, Some("Class 390".to_string()));
         assert!(form.current_header.is_some());
@@ -766,10 +776,14 @@ mod tests {
         let mut form = FormData::new().0;
 
         // Simulate user interaction sequence
-        let _ = form.update(Message::TextInputChanged(StringInput::Reference, "5D10".to_string()));
-        let _ = form.update(
-            Message::TextInputChanged(StringInput::Description, "Freight Train".to_string())
-        );
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Reference,
+            "5D10".to_string(),
+        ));
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Description,
+            "Freight Train".to_string(),
+        ));
         let _ = form.update(Message::NumericInputChanged(IntInput::StartSpeed, 60));
 
         assert_eq!(form.reference, "5D10");
@@ -786,13 +800,17 @@ mod tests {
         let mut form = FormData::new().0;
 
         // Step 1: Enter reference
-        let _ = form.update(Message::TextInputChanged(StringInput::Reference, "7E01".to_string()));
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Reference,
+            "7E01".to_string(),
+        ));
         assert_eq!(form.reference, "7E01");
 
         // Step 2: Enter description
-        let _ = form.update(
-            Message::TextInputChanged(StringInput::Description, "Intercity Express".to_string())
-        );
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Description,
+            "Intercity Express".to_string(),
+        ));
         assert_eq!(form.description, "Intercity Express");
 
         // Step 3: Set start speed
@@ -809,7 +827,10 @@ mod tests {
         form.consist_list.insert("IC225".to_string(), consist);
         form.consist_options.push("IC225".to_string());
 
-        let _ = form.update(Message::TextInputChanged(StringInput::Consist, "IC225".to_string()));
+        let _ = form.update(Message::TextInputChanged(
+            StringInput::Consist,
+            "IC225".to_string(),
+        ));
 
         // Final check: header should be generated
         let expected = "7E01;Intercity Express;90;180;520;260;5500";
