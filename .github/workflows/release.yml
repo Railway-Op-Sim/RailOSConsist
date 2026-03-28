@@ -138,25 +138,25 @@ jobs:
         run: cargo build --release
       - name: Create Package
         run: |
-          mkdir -p release
           if [[ "$RUNNER_OS" == "macOS" ]]; then
             # macOS: Copy the app bundle
-            cp -r target/release/bundle/osx/RailOSConsist.app release/
+            cp -r target/release/bundle/osx/RailOSConsist.app .
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             # Windows: Copy the executable
-            cp target/${{ matrix.target }}/release/railosconsist.exe release/
+            cp target/${{ matrix.target }}/release/railosconsist.exe .
           else
             # Linux: Copy the binary (native build, no target directory)
-            cp target/release/railosconsist release/
+            cp target/release/railosconsist .
           fi
-          cp .publish-docs/README.pdf release/README.pdf
+          cp .publish-docs/README.pdf README.pdf
         shell: bash
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.6
         with:
           type: "zip"
           filename: "${{ matrix.asset_name }}_${{ steps.outver.outputs.version }}.zip"
-          path: "release"
+          path: "."
+          exclusions: ".git/** .github/** src/** target/** .gitignore"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
