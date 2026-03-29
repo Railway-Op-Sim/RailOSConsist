@@ -1,110 +1,110 @@
 {
-    "AM35": {
-        "mass": 242,
-        "max_speed": 120,
-        "power": 968,
-        "brake_force": 36
-    },
-    "AM39": {
-        "mass": 101,
-        "max_speed": 130,
-        "power": 840,
-        "brake_force": 17
-    },
-    "AM46": {
-        "mass": 110,
-        "max_speed": 140,
-        "power": 830,
-        "brake_force": 20
-    },
-    "AM50": {
-        "mass": 117,
-        "max_speed": 130,
-        "power": 620,
-        "brake_force": 22
-    },
-    "AM51": {
-        "mass": 99,
-        "max_speed": 130,
-        "power": 620,
-        "brake_force": 15
-    },
-    "AM53": {
-        "mass": 116,
-        "max_speed": 130,
-        "power": 620,
-        "brake_force": 23
-    },
-    "AM54" : {
-        "mass": 106,
-        "max_speed": 130,
-        "power": 620,
-        "brake_force": 18
-    },
-    "AM55": {
-        "mass": 105,
-        "max_speed": 130,
-        "power": 620,
-        "brake_force": 21
-    },
-    "AM56": {
-        "mass": 102,
-        "max_speed": 130,
-        "power": 620,
-        "brake_force": 18
-    },
-    "AM62/63/65": {
-        "mass": 101,
-        "max_speed": 130,
-        "power": 735,
-        "brake_force": 17
-    },
-    "AM66/AM70JH/AM70TH": {
-        "mass": 101,
-        "max_speed": 140,
-        "power": 770,
-        "brake_force": 17
-    },
-    "AM70 Airport": {
-        "mass": 121,
-        "max_speed": 140,
-        "power": 770,
-        "brake_force": 22
-    },
-    "AM73/74/78/79": {
-        "mass": 107,
-        "max_speed": 140,
-        "power": 770,
-        "brake_force": 18
-    },
-    "AM75": {
-        "mass": 220,
-        "max_speed": 140,
-        "power": 1535,
-        "brake_force": 33
-    },
-    "AM80": {
-        "mass": 152,
-        "max_speed": 160,
-        "power": 1400,
-        "brake_force": 23
-    },
-    "AM86": {
-        "mass": 107,
-        "max_speed": 120,
-        "power": 770,
-        "brake_force": 18
-    },
-    "AM96": {
-        "mass": 157,
-        "max_speed": 160,
-        "power": 1400,
-        "brake_force": 24
-    },
-    "AM08": {
-        "mass": 147,
-        "max_speed": 160,
-        "power": 160,
-        "brake_force": 20
-    }
+  "AM08": {
+    "brake_force": 20,
+    "mass": 147,
+    "max_speed": 160,
+    "power": 160
+  },
+  "AM35": {
+    "brake_force": 36,
+    "mass": 242,
+    "max_speed": 120,
+    "power": 968
+  },
+  "AM39": {
+    "brake_force": 17,
+    "mass": 101,
+    "max_speed": 130,
+    "power": 840
+  },
+  "AM46": {
+    "brake_force": 20,
+    "mass": 110,
+    "max_speed": 140,
+    "power": 830
+  },
+  "AM50": {
+    "brake_force": 22,
+    "mass": 117,
+    "max_speed": 130,
+    "power": 620
+  },
+  "AM51": {
+    "brake_force": 15,
+    "mass": 99,
+    "max_speed": 130,
+    "power": 620
+  },
+  "AM53": {
+    "brake_force": 23,
+    "mass": 116,
+    "max_speed": 130,
+    "power": 620
+  },
+  "AM54": {
+    "brake_force": 18,
+    "mass": 106,
+    "max_speed": 130,
+    "power": 620
+  },
+  "AM55": {
+    "brake_force": 21,
+    "mass": 105,
+    "max_speed": 130,
+    "power": 620
+  },
+  "AM56": {
+    "brake_force": 18,
+    "mass": 102,
+    "max_speed": 130,
+    "power": 620
+  },
+  "AM62/63/65": {
+    "brake_force": 17,
+    "mass": 101,
+    "max_speed": 130,
+    "power": 735
+  },
+  "AM66/AM70JH/AM70TH": {
+    "brake_force": 17,
+    "mass": 101,
+    "max_speed": 140,
+    "power": 770
+  },
+  "AM70 Airport": {
+    "brake_force": 22,
+    "mass": 121,
+    "max_speed": 140,
+    "power": 770
+  },
+  "AM73/74/78/79": {
+    "brake_force": 18,
+    "mass": 107,
+    "max_speed": 140,
+    "power": 770
+  },
+  "AM75": {
+    "brake_force": 33,
+    "mass": 220,
+    "max_speed": 140,
+    "power": 1535
+  },
+  "AM80": {
+    "brake_force": 23,
+    "mass": 152,
+    "max_speed": 160,
+    "power": 1400
+  },
+  "AM86": {
+    "brake_force": 18,
+    "mass": 107,
+    "max_speed": 120,
+    "power": 770
+  },
+  "AM96": {
+    "brake_force": 24,
+    "mass": 157,
+    "max_speed": 160,
+    "power": 1400
+  }
 }

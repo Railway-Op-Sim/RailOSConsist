@@ -1,7 +1,22 @@
 [[repos]]
 repo = "local"
 hooks = [
-    { id = "cargo-fmt", name = "Cargo Format", entry = "cargo fmt --all -- --check", language = "system", files = '\.rs$' },
-    { id = "cargo-check", name = "Cargo Check", entry = "cargo check", language = "system", files = '\.rs$' },
-    { id = "cargo-clippy", name = "Cargo Clippy", entry = "cargo clippy -- -D warnings", language = "system", files = '\.rs$' },
+    { id = "cargo-fmt", name = "Cargo Format", entry = "cargo fmt --all", language = "system", files = "\\.rs$", pass_filenames = false },
+    { id = "cargo-check", name = "Cargo Check", entry = "cargo check", language = "system", files = "\\.rs$", pass_filenames = false },
+    { id = "cargo-clippy", name = "Cargo Clippy", entry = "cargo clippy -- -D warnings", language = "system", files = "\\.rs$", pass_filenames = false },
+]
+
+[[repos]]
+repo = "builtin"
+hooks = [
+    { id = "check-toml" },
+    { id = "trailing-whitespace" },
+    { id = "end-of-file-fixer" },
+    { id = "check-merge-conflict" },
+    { id = "check-json" },
+    { id = "pretty-format-json", args = [
+        "--autofix",
+        "--indent=2",
+    ] },
+    { id = "check-yaml" },
 ]

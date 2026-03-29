@@ -1,386 +1,386 @@
 {
+  "Clas 43 HST (2+8)": {
+    "brake_force": 35,
+    "mass": 264,
+    "max_speed": 201,
+    "power": 984
+  },
   "Class 139": {
-    "max_speed": 64,
-    "mass": 12,
     "brake_force": 7,
+    "mass": 12,
+    "max_speed": 64,
     "power": 64
   },
   "Class 142": {
-    "max_speed": 121,
-    "mass": 50,
     "brake_force": 11,
+    "mass": 50,
+    "max_speed": 121,
     "power": 336
   },
   "Class 143/0": {
-    "max_speed": 121,
-    "mass": 50,
     "brake_force": 11,
+    "mass": 50,
+    "max_speed": 121,
     "power": 336
   },
   "Class 143/3": {
-    "max_speed": 121,
-    "mass": 50,
     "brake_force": 11,
+    "mass": 50,
+    "max_speed": 121,
     "power": 336
   },
   "Class 143/6": {
-    "max_speed": 121,
-    "mass": 50,
     "brake_force": 11,
+    "mass": 50,
+    "max_speed": 121,
     "power": 336
   },
   "Class 144": {
-    "max_speed": 121,
-    "mass": 72,
     "brake_force": 13,
+    "mass": 72,
+    "max_speed": 121,
     "power": 503
   },
   "Class 150/0": {
-    "max_speed": 121,
-    "mass": 90,
     "brake_force": 34,
+    "mass": 90,
+    "max_speed": 121,
     "power": 638
   },
   "Class 150/1": {
-    "max_speed": 121,
-    "mass": 76,
     "brake_force": 28,
+    "mass": 76,
+    "max_speed": 121,
     "power": 425
   },
   "Class 150/2": {
-    "max_speed": 121,
-    "mass": 74,
     "brake_force": 28,
+    "mass": 74,
+    "max_speed": 121,
     "power": 425
   },
   "Class 150/9": {
-    "max_speed": 121,
-    "mass": 111,
     "brake_force": 21,
+    "mass": 111,
+    "max_speed": 121,
     "power": 638
   },
   "Class 153": {
-    "max_speed": 121,
-    "mass": 41,
     "brake_force": 9,
+    "mass": 41,
+    "max_speed": 121,
     "power": 213
   },
   "Class 155": {
-    "max_speed": 121,
-    "mass": 78,
     "brake_force": 44,
+    "mass": 78,
+    "max_speed": 121,
     "power": 425
   },
   "Class 156": {
-    "max_speed": 121,
-    "mass": 78,
     "brake_force": 44,
+    "mass": 78,
+    "max_speed": 121,
     "power": 425
   },
   "Class 158": {
-    "max_speed": 145,
-    "mass": 126,
     "brake_force": 71,
+    "mass": 126,
+    "max_speed": 145,
     "power": 783
   },
   "Class 159": {
-    "max_speed": 145,
-    "mass": 114,
     "brake_force": 64,
+    "mass": 114,
+    "max_speed": 145,
     "power": 895
   },
   "Class 165/0": {
-    "max_speed": 121,
-    "mass": 120,
     "brake_force": 45,
+    "mass": 120,
+    "max_speed": 121,
     "power": 783
   },
   "Class 165/1": {
-    "max_speed": 145,
-    "mass": 111,
     "brake_force": 41,
+    "mass": 111,
+    "max_speed": 145,
     "power": 783
   },
   "Class 166": {
-    "max_speed": 145,
-    "mass": 120,
     "brake_force": 45,
+    "mass": 120,
+    "max_speed": 145,
     "power": 783
   },
   "Class 168": {
-    "max_speed": 161,
-    "mass": 176,
     "brake_force": 66,
+    "mass": 176,
+    "max_speed": 161,
     "power": 1259
   },
   "Class 170/1": {
-    "max_speed": 161,
-    "mass": 132,
     "brake_force": 49,
+    "mass": 132,
+    "max_speed": 161,
     "power": 944
   },
   "Class 170/2": {
-    "max_speed": 161,
-    "mass": 132,
     "brake_force": 49,
+    "mass": 132,
+    "max_speed": 161,
     "power": 944
   },
   "Class 170/3": {
-    "max_speed": 161,
-    "mass": 132,
     "brake_force": 49,
+    "mass": 132,
+    "max_speed": 161,
     "power": 629
   },
   "Class 170/4": {
-    "max_speed": 161,
-    "mass": 132,
     "brake_force": 49,
+    "mass": 132,
+    "max_speed": 161,
     "power": 944
   },
   "Class 170/5": {
-    "max_speed": 161,
-    "mass": 88,
     "brake_force": 33,
+    "mass": 88,
+    "max_speed": 161,
     "power": 629
   },
   "Class 170/6": {
-    "max_speed": 161,
-    "mass": 132,
     "brake_force": 49,
+    "mass": 132,
+    "max_speed": 161,
     "power": 944
   },
   "Class 171/7": {
-    "max_speed": 161,
-    "mass": 96,
     "brake_force": 36,
+    "mass": 96,
+    "max_speed": 161,
     "power": 629
   },
   "Class 171/8": {
-    "max_speed": 161,
-    "mass": 176,
     "brake_force": 66,
+    "mass": 176,
+    "max_speed": 161,
     "power": 944
   },
   "Class 172/0": {
-    "max_speed": 161,
-    "mass": 82,
     "brake_force": 31,
+    "mass": 82,
+    "max_speed": 161,
     "power": 722
   },
   "Class 172/1": {
-    "max_speed": 161,
-    "mass": 82,
     "brake_force": 31,
+    "mass": 82,
+    "max_speed": 161,
     "power": 722
   },
   "Class 172/2": {
-    "max_speed": 161,
-    "mass": 84,
     "brake_force": 31,
+    "mass": 84,
+    "max_speed": 161,
     "power": 722
   },
   "Class 172/3": {
-    "max_speed": 161,
-    "mass": 120,
     "brake_force": 45,
+    "mass": 120,
+    "max_speed": 161,
     "power": 722
   },
   "Class 175/0": {
-    "max_speed": 161,
-    "mass": 98,
     "brake_force": 37,
+    "mass": 98,
+    "max_speed": 161,
     "power": 671
   },
   "Class 175/1": {
-    "max_speed": 161,
-    "mass": 147,
     "brake_force": 55,
+    "mass": 147,
+    "max_speed": 161,
     "power": 1007
   },
   "Class 180 *Zephyr*": {
-    "max_speed": 201,
-    "mass": 250,
     "brake_force": 70,
+    "mass": 250,
+    "max_speed": 201,
     "power": 2796
   },
   "Class 185 *Pennine*": {
-    "max_speed": 161,
-    "mass": 165,
     "brake_force": 92,
+    "mass": 165,
+    "max_speed": 161,
     "power": 1678
   },
-  "Class 220 *Voyager*": {
-    "max_speed": 201,
-    "mass": 204,
-    "brake_force": 76,
-    "power": 2237
-  },
-  "Class 221 *Super Voyager*": {
-    "max_speed": 201,
-    "mass": 280,
-    "brake_force": 105,
-    "power": 2796
-  },
-  "Class 222/0 *Meridian*": {
-    "max_speed": 201,
-    "mass": 196,
-    "brake_force": 73,
-    "power": 2237
-  },
   "Class 195/0": {
-    "max_speed": 161,
-    "mass": 22,
     "brake_force": 12,
+    "mass": 22,
+    "max_speed": 161,
     "power": 780
   },
   "Class 195/1": {
-    "max_speed": 161,
-    "mass": 33,
     "brake_force": 18,
+    "mass": 33,
+    "max_speed": 161,
     "power": 1170
   },
   "Class 196/0": {
-    "max_speed": 161,
-    "mass": 0,
     "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
     "power": 0
   },
   "Class 196/1": {
-    "max_speed": 161,
-    "mass": 0,
     "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
     "power": 0
   },
   "Class 197/0": {
-    "max_speed": 161,
-    "mass": 0,
     "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
     "power": 0
   },
   "Class 197/1": {
-    "max_speed": 161,
-    "mass": 0,
     "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
     "power": 0
   },
+  "Class 220 *Voyager*": {
+    "brake_force": 76,
+    "mass": 204,
+    "max_speed": 201,
+    "power": 2237
+  },
+  "Class 221 *Super Voyager*": {
+    "brake_force": 105,
+    "mass": 280,
+    "max_speed": 201,
+    "power": 2796
+  },
+  "Class 222/0 *Meridian*": {
+    "brake_force": 73,
+    "mass": 196,
+    "max_speed": 201,
+    "power": 2237
+  },
   "Class 230": {
-    "max_speed": 161,
-    "mass": 81,
     "brake_force": 45,
+    "mass": 81,
+    "max_speed": 161,
     "power": 298
   },
   "Class 231": {
-    "max_speed": 161,
-    "mass": 0,
     "brake_force": 0,
-    "power": 0
-  },
-  "Class 755/3": {
-    "max_speed": 161,
     "mass": 0,
-    "brake_force": 0,
+    "max_speed": 161,
     "power": 0
-  },
-  "Class 755/4": {
-    "max_speed": 161,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
-  },
-  "Class 756/3": {
-    "max_speed": 161,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
-  },
-  "Class 756/4": {
-    "max_speed": 161,
-    "mass": 0,
-    "brake_force": 0,
-    "power": 0
-  },
-  "Class 800/1 *IET*": {
-    "max_speed": 201,
-    "mass": 243,
-    "brake_force": 136,
-    "power": 701
-  },
-  "Class 800/1 *Azuma*": {
-    "max_speed": 201,
-    "mass": 439,
-    "brake_force": 246,
-    "power": 559
-  },
-  "Class 800/2 *IET*": {
-    "max_speed": 201,
-    "mass": 439,
-    "brake_force": 246,
-    "power": 701
-  },
-  "Class 802 *IET*": {
-    "max_speed": 201,
-    "mass": 244,
-    "brake_force": 137,
-    "power": 701
-  },
-  "Class 802 *Paragon*": {
-    "max_speed": 201,
-    "mass": 244,
-    "brake_force": 137,
-    "power": 701
-  },
-  "Class 802 *Nova*": {
-    "max_speed": 201,
-    "mass": 244,
-    "brake_force": 137,
-    "power": 701
-  },
-  "Class 68+MK5+DVT *Nova*": {
-    "max_speed": 161,
-    "mass": 215,
-    "brake_force": 80,
-    "power": 2834
-  },
-  "Class 67+MK3+DVT": {
-    "max_speed": 161,
-    "mass": 198,
-    "brake_force": 55,
-    "power": 1864
-  },
-  "Class 43 HST *Castle*": {
-    "max_speed": 201,
-    "mass": 140,
-    "brake_force": 35,
-    "power": 984
   },
   "Class 43 HST (2+6, B)": {
-    "max_speed": 201,
-    "mass": 198,
     "brake_force": 35,
+    "mass": 198,
+    "max_speed": 201,
     "power": 984
   },
   "Class 43 HST (2+7)": {
-    "max_speed": 201,
+    "brake_force": 35,
     "mass": 231,
-    "brake_force": 35,
-    "power": 984
-  },
-  "Clas 43 HST (2+8)": {
     "max_speed": 201,
-    "mass": 264,
-    "brake_force": 35,
     "power": 984
   },
   "Class 43 HST (2+8)": {
-    "max_speed": 201,
-    "mass": 264,
     "brake_force": 35,
+    "mass": 264,
+    "max_speed": 201,
     "power": 984
   },
   "Class 43 HST (2+9)": {
-    "max_speed": 201,
-    "mass": 297,
     "brake_force": 35,
+    "mass": 297,
+    "max_speed": 201,
     "power": 984
+  },
+  "Class 43 HST *Castle*": {
+    "brake_force": 35,
+    "mass": 140,
+    "max_speed": 201,
+    "power": 984
+  },
+  "Class 67+MK3+DVT": {
+    "brake_force": 55,
+    "mass": 198,
+    "max_speed": 161,
+    "power": 1864
+  },
+  "Class 68+MK5+DVT *Nova*": {
+    "brake_force": 80,
+    "mass": 215,
+    "max_speed": 161,
+    "power": 2834
+  },
+  "Class 755/3": {
+    "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
+    "power": 0
+  },
+  "Class 755/4": {
+    "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
+    "power": 0
+  },
+  "Class 756/3": {
+    "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
+    "power": 0
+  },
+  "Class 756/4": {
+    "brake_force": 0,
+    "mass": 0,
+    "max_speed": 161,
+    "power": 0
+  },
+  "Class 800/1 *Azuma*": {
+    "brake_force": 246,
+    "mass": 439,
+    "max_speed": 201,
+    "power": 559
+  },
+  "Class 800/1 *IET*": {
+    "brake_force": 136,
+    "mass": 243,
+    "max_speed": 201,
+    "power": 701
+  },
+  "Class 800/2 *IET*": {
+    "brake_force": 246,
+    "mass": 439,
+    "max_speed": 201,
+    "power": 701
+  },
+  "Class 802 *IET*": {
+    "brake_force": 137,
+    "mass": 244,
+    "max_speed": 201,
+    "power": 701
+  },
+  "Class 802 *Nova*": {
+    "brake_force": 137,
+    "mass": 244,
+    "max_speed": 201,
+    "power": 701
+  },
+  "Class 802 *Paragon*": {
+    "brake_force": 137,
+    "mass": 244,
+    "max_speed": 201,
+    "power": 701
   }
 }

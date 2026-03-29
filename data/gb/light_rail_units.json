@@ -1,14 +1,14 @@
 {
-    "Bombardier CR4000": {
-        "max_speed": 80,
-        "mass": 36,
-        "brake_force": 8,
-        "power": 480
-    },
-    "Stadler Variobahn": {
-        "max_speed": 80,
-        "mass": 36,
-        "brake_force": 8,
-        "power": 480
-    }
+  "Bombardier CR4000": {
+    "brake_force": 8,
+    "mass": 36,
+    "max_speed": 80,
+    "power": 480
+  },
+  "Stadler Variobahn": {
+    "brake_force": 8,
+    "mass": 36,
+    "max_speed": 80,
+    "power": 480
+  }
 }

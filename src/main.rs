@@ -424,7 +424,7 @@ impl FormData {
                     let mut clipboard = Clipboard::new().unwrap();
                     if let Some(header) = self.current_header.clone() {
                         log::debug!("Copying {header} to clipboard.");
-                        let _ = clipboard.set_text(header).unwrap_or_else(|_| {
+                        clipboard.set_text(header).unwrap_or_else(|_| {
                             log::error!("Failed to copy to clipboard");
                         });
                     }

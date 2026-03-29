@@ -1,10 +1,10 @@
 <p align="center">
 <img
-    style="display: block; 
+    style="display: block;
            margin-left: auto;
            margin-right: auto;
            width: 30%;"
-    src="https://raw.githubusercontent.com/Railway-Op-Sim/RailOSConsist/main/media/RailOSConsist.png" 
+    src="https://raw.githubusercontent.com/Railway-Op-Sim/RailOSConsist/main/media/RailOSConsist.png"
     alt="Our logo">
 </img>
 </p>
