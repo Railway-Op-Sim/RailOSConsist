@@ -146,7 +146,7 @@ jobs:
         run: |
           if [[ "$RUNNER_OS" == "macOS" ]]; then
             # macOS: Copy the app bundle
-            cp -r target/release/bundle/osx/RailOSConsist.app .
+            cp -r target/${{ matrix.target }}/release/bundle/osx/RailOSConsist.app .
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             # Windows: Copy the executable
             cp target/${{ matrix.target }}/release/RailOSConsist.exe .
