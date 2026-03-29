@@ -149,10 +149,10 @@ jobs:
             cp -r target/release/bundle/osx/RailOSConsist.app .
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             # Windows: Copy the executable
-            cp target/${{ matrix.target }}/release/railosconsist.exe .
+            cp target/${{ matrix.target }}/release/RailOSConsist.exe .
           else
             # Linux: Copy the binary (native build, no target directory)
-            cp target/release/railosconsist .
+            cp target/release/RailOSConsist .
           fi
           cp .publish-docs/README.pdf README.pdf
         shell: bash
