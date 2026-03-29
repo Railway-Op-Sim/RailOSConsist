@@ -12,6 +12,9 @@ edition = "2024"
 
 exclude = [".github", "tests/", "target/"]
 
+[badges]
+maintenance = { status = "actively-developed" }
+
 [dependencies]
 arboard = "3.6.1"
 iced = "0.14.0"
