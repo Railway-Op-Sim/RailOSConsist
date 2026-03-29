@@ -10,6 +10,7 @@
 </p>
 
 # Timetable Service Header Creator
+[![RailOSConsist Tests](https://github.com/Railway-Op-Sim/RailOSConsist/actions/workflows/test_build.yml/badge.svg)](https://github.com/Railway-Op-Sim/RailOSConsist/actions/workflows/test_build.yml)
 
 _RailOSConsist_ is a small utility for quickly generating the first line of a service timetable entry in [Railway Operation Simulator](https://www.railwayoperationsimulator.com/) (RailOS) using existing consists. Currently the utility makes use of data assembled by Discord user _Mark "The Jinx"_ on the RailOS server for entries describing UK rolling stock with the plan to add entries for other countries at a later date.
 
